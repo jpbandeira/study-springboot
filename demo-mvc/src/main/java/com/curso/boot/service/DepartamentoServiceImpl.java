@@ -8,23 +8,24 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Transactional(readOnly = false)
 @Service
 public class DepartamentoServiceImpl implements DepartamentoService {
 
     @Autowired
     private DepartamentoDao departamentoDao;
 
-    @Override @Transactional(readOnly = false)
+    @Override
     public void salvar(Departamento departamento) {
         departamentoDao.save(departamento);
     }
 
-    @Override @Transactional(readOnly = false)
+    @Override
     public void excluir(Departamento departamento) {
         departamentoDao.delete(departamento);
     }
 
-    @Override @Transactional(readOnly = false)
+    @Override
     public void editar(Departamento departamento) {
         departamentoDao.update(departamento);
     }

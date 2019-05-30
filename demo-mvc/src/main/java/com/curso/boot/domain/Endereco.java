@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.core.JsonParser.NumberType;
 
@@ -23,7 +24,8 @@ public class Endereco extends AbstractEntity<Long> {
 	
 	@Column(nullable = false)
 	private String cidade;
-	
+
+	@Size(min = 3, max = 255) // Retonar para o campo que utiliza esse atributo, a mensagem padrão de erro e define a validação do mesmo
 	@Column(nullable = false)
 	private String logadouro;
 	

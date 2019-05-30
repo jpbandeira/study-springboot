@@ -8,23 +8,24 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Transactional(readOnly = false)
 @Service
 public class CargoServiceImpl implements CargoService {
 
     @Autowired
     private CargoDao cargoDao;
 
-    @Override @Transactional(readOnly = false)
+    @Override
     public void salvar(Cargo cargo) {
         cargoDao.save(cargo);
     }
 
-    @Override @Transactional(readOnly = false)
+    @Override
     public void excluir(Cargo cargo) {
         cargoDao.delete(cargo);
     }
 
-    @Override @Transactional(readOnly = false)
+    @Override
     public void editar(Cargo cargo) {
         cargoDao.update(cargo);
     }
