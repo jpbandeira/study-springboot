@@ -25,7 +25,7 @@ public class FuncionarioServiceImpl implements FuncionarioService {
         funcionarioDao.delete(funcionario);
     }
 
-    @Override 
+    @Override
     public void editar(Funcionario funcionario) {
         funcionarioDao.update(funcionario);
     }
