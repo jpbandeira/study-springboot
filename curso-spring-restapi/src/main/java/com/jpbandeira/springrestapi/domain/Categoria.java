@@ -7,9 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-public class CategoriaD implements Serializable {
+@Table(name = "Categoria")
+public class Categoria implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -18,9 +20,9 @@ public class CategoriaD implements Serializable {
 	private Integer id;
 	private String nome;
 	
-	public CategoriaD() {}
+	public Categoria() {}
 
-	public CategoriaD(Integer id, String noome) {
+	public Categoria(Integer id, String noome) {
 		this.id = id;
 		this.nome = noome;
 	}
@@ -57,7 +59,7 @@ public class CategoriaD implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CategoriaD other = (CategoriaD) obj;
+		Categoria other = (Categoria) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
