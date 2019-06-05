@@ -2,17 +2,27 @@ package com.jpbandeira.springrestapi.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class CategoriaD implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name ="Cod_Categoria")
 	private Integer id;
-	private String noome;
+	private String nome;
 	
 	public CategoriaD() {}
 
 	public CategoriaD(Integer id, String noome) {
 		this.id = id;
-		this.noome = noome;
+		this.nome = noome;
 	}
 
 	public Integer getId() {
@@ -24,11 +34,11 @@ public class CategoriaD implements Serializable {
 	}
 
 	public String getNoome() {
-		return noome;
+		return nome;
 	}
 
 	public void setNoome(String noome) {
-		this.noome = noome;
+		this.nome = noome;
 	}
 
 	@Override
