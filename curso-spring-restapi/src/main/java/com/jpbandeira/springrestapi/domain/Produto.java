@@ -1,5 +1,7 @@
 package com.jpbandeira.springrestapi.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -13,6 +15,7 @@ public class Produto implements Serializable {
     private Integer id;
     private String nome;
     private Double preco;
+    @JsonBackReference
     @ManyToMany
     /*Como nesse caso temos uma relação de muitos para muitos entre produto e categoria
      * é usada a anotação JoinTable, onde será criada uma tabela de comunicação entre as duas tabelas

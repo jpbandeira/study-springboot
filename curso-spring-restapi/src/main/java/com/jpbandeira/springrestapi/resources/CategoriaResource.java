@@ -3,6 +3,7 @@ package com.jpbandeira.springrestapi.resources;
 
 import java.util.Optional;
 
+import javassist.tools.rmi.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,8 +22,8 @@ public class CategoriaResource {
 	private CategoriaService categoriaService;
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<?> buscar(@PathVariable Integer id) {
-		Optional<Categoria> objetoCategoria = categoriaService.buscar(id);
+	public ResponseEntity<?> find(@PathVariable Integer id) throws ObjectNotFoundException {
+		Optional<Categoria> objetoCategoria = Optional.ofNullable(categoriaService.buscar(id));
 		return ResponseEntity.ok().body(objetoCategoria);
 	}
 }

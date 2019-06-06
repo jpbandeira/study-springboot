@@ -1,5 +1,7 @@
 package com.jpbandeira.springrestapi.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,7 @@ public class Categoria implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
+	@JsonManagedReference
 	/*No caso desse lado, como o mapeamento foi feito pela entidade Produto, aqui é colocada a anotação ManyToMany
 	* informando com o mappedBy que foi mapeado pela entidade categorias*/
 	@ManyToMany(mappedBy = "categorias")
@@ -27,12 +30,12 @@ public class Categoria implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getNoome() {
+	public String getnome() {
 		return nome;
 	}
 
-	public void setNoome(String noome) {
-		this.nome = noome;
+	public void setnome(String nome) {
+		this.nome = nome;
 	}
 
 	public List<Produto> getProdutos() {
