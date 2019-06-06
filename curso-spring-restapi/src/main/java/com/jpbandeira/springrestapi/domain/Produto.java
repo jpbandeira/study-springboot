@@ -15,6 +15,9 @@ public class Produto implements Serializable {
     private Integer id;
     private String nome;
     private Double preco;
+
+    /*Essa anotação verifica se no outro lado da associação já foi buscado os objetos, então ele omite a lista
+    * de categorias para cada produto*/
     @JsonBackReference
     @ManyToMany
     /*Como nesse caso temos uma relação de muitos para muitos entre produto e categoria

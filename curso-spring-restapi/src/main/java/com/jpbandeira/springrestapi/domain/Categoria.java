@@ -17,6 +17,7 @@ public class Categoria implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
+	/*Essa anotação faz a gerencia do objetos associados vindos do outro dominio, transformando em json os seus dados*/
 	@JsonManagedReference
 	/*No caso desse lado, como o mapeamento foi feito pela entidade Produto, aqui é colocada a anotação ManyToMany
 	* informando com o mappedBy que foi mapeado pela entidade categorias*/
