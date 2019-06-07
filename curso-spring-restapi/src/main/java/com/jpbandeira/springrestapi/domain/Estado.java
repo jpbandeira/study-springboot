@@ -49,12 +49,14 @@ public class Estado implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Estado estado = (Estado) o;
-        return id.equals(estado.id);
+
+        return cidades != null ? cidades.equals(estado.cidades) : estado.cidades == null;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return cidades != null ? cidades.hashCode() : 0;
     }
 }

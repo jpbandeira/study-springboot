@@ -1,13 +1,8 @@
 package com.jpbandeira.springrestapi;
 
-import com.jpbandeira.springrestapi.domain.Categoria;
-import com.jpbandeira.springrestapi.domain.Cidade;
-import com.jpbandeira.springrestapi.domain.Estado;
-import com.jpbandeira.springrestapi.domain.Produto;
-import com.jpbandeira.springrestapi.repositories.CidadeRepository;
-import com.jpbandeira.springrestapi.repositories.CategoriaRepository;
-import com.jpbandeira.springrestapi.repositories.EstadoRepository;
-import com.jpbandeira.springrestapi.repositories.ProdutoRepository;
+import com.jpbandeira.springrestapi.domain.*;
+import com.jpbandeira.springrestapi.enums.TipoCliente;
+import com.jpbandeira.springrestapi.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -26,13 +21,17 @@ public class CursoSpringRestapiApplication implements CommandLineRunner {
 	private ProdutoRepository produtoRepository;
 	private CidadeRepository cidadeRepository;
 	private EstadoRepository estadoRepository;
+	private ClienteRepository clienteRepository;
+	private EnderecoRepository enderecoRepository;
 
 	@Autowired
-	public CursoSpringRestapiApplication(CategoriaRepository categoriaRepository,ProdutoRepository produtoRepository, CidadeRepository cidadeRepository, EstadoRepository estadoRepository){
+	public CursoSpringRestapiApplication(CategoriaRepository categoriaRepository,ProdutoRepository produtoRepository, CidadeRepository cidadeRepository, EstadoRepository estadoRepository, ClienteRepository clienteRepository, EnderecoRepository enderecoRepository){
 		this.categoriaRepository = categoriaRepository;
 		this.produtoRepository = produtoRepository;
 		this.cidadeRepository = cidadeRepository;
 		this.estadoRepository = estadoRepository;
+		this.clienteRepository = clienteRepository;
+		this.enderecoRepository = enderecoRepository;
 	}
 
 	@Override
@@ -51,6 +50,13 @@ public class CursoSpringRestapiApplication implements CommandLineRunner {
 		Cidade cidade2 = new Cidade(null, "São Paulo", estado2);
 		Cidade cidade3 = new Cidade(null, "Campinas", estado2);
 
+		Cliente cliente1 = new Cliente(null, "João Pedro", "joao@pedro.com", "03054945000160", TipoCliente.PESSOAFISICA);
+
+		cliente1.getTelefones().addAll(Arrays.asList("8599922035", "8599920350"));
+
+		Endereco endereco1 = new Endereco(null, "Rua Suiça", "120", "AP 202 B A9", "Maraponga", "60711035", cliente1, cidade1);
+		Endereco endereco2 = new Endereco(null, "Rua Alpha", "121", "AP 203 B A10", "Maraponga", "60711034", cliente1, cidade2);
+
 		categoria1.getProdutos().addAll(Arrays.asList(produto1, produto2, produto3));
 		categoria2.getProdutos().addAll(Arrays.asList(produto2));
 
@@ -61,9 +67,13 @@ public class CursoSpringRestapiApplication implements CommandLineRunner {
 		estado1.getCidades().addAll(Arrays.asList(cidade1));
 		estado2.getCidades().addAll(Arrays.asList(cidade2,cidade3));
 
+		cliente1.getEnderecos().addAll(Arrays.asList(endereco1, endereco2));
+
 		categoriaRepository.saveAll(Arrays.asList(categoria1,categoria2));
 		produtoRepository.saveAll(Arrays.asList(produto1, produto2, produto3));
 		cidadeRepository.saveAll(Arrays.asList(cidade1, cidade2, cidade3));
 		estadoRepository.saveAll(Arrays.asList(estado1, estado2));
+		clienteRepository.saveAll(Arrays.asList(cliente1));
+		enderecoRepository.saveAll(Arrays.asList(endereco1, endereco2));
 	}
 }
