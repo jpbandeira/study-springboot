@@ -1,5 +1,6 @@
 package com.jpbandeira.springrestapi.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.jpbandeira.springrestapi.enums.TipoCliente;
 
 import javax.persistence.*;
@@ -12,7 +13,7 @@ import java.util.Set;
 @Entity
 public class Cliente implements Serializable {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
     private String email;
@@ -21,7 +22,7 @@ public class Cliente implements Serializable {
     /*Nessea atributo não sera armazenado um dado tipo cliente, mas sim um dado do tipo inteiro
     * Internamente o tipo cliente sera armazenado como inteiro, mas de maneira externa a classe expoe um dado do tipo CLiente*/
     private Integer tipoCliente;
-
+    @JsonManagedReference
     @OneToMany(mappedBy = "cliente")
     private List<Endereco> enderecos = new ArrayList<>();
 
@@ -29,7 +30,7 @@ public class Cliente implements Serializable {
     @CollectionTable(name = "telefone")
     private Set<String> telefones = new HashSet<>();
 
-    public  Cliente(Integer id, String joão_pedro, String email, String cpfOuCnpj, int i){}
+    public  Cliente(){}
 
     public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipoCliente) {
         this.id = id;

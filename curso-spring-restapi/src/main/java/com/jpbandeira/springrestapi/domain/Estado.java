@@ -1,5 +1,8 @@
 package com.jpbandeira.springrestapi.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -7,8 +10,11 @@ import java.util.List;
 import java.util.Objects;
 @Entity
 public class Estado implements Serializable {
+
+    @JsonBackReference
     @OneToMany(mappedBy = "estado")
     private List<Cidade> cidades = new ArrayList<>();
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

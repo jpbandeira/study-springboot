@@ -23,7 +23,7 @@ public class CategoriaResource {
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<?> find(@PathVariable Integer id) throws ObjectNotFoundException {
-		Optional<Categoria> objetoCategoria = Optional.ofNullable(categoriaService.buscar(id));
+		Optional<Categoria> objetoCategoria = Optional.ofNullable(categoriaService.buscarCategoria(id));
 		return ResponseEntity.ok().body(objetoCategoria);
 	}
 }

@@ -1,5 +1,8 @@
 package com.jpbandeira.springrestapi.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.io.Serializable;
 import javax.persistence.*;
 
@@ -10,6 +13,8 @@ public class Cidade implements Serializable {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     private String nome;
+
+    @JsonManagedReference
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "estado_id")
     private Estado estado;
