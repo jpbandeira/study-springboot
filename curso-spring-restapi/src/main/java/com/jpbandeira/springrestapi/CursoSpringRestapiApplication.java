@@ -27,11 +27,12 @@ public class CursoSpringRestapiApplication implements CommandLineRunner {
 	private EnderecoRepository enderecoRepository;
 	private PedidoRepository pedidoRepository;
 	private PagamentoRepository pagamentoRepository;
+	private ItemPedidoRepository itemPedidoRepository;
 
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
 	@Autowired
-	public CursoSpringRestapiApplication(CategoriaRepository categoriaRepository,ProdutoRepository produtoRepository, CidadeRepository cidadeRepository, EstadoRepository estadoRepository, ClienteRepository clienteRepository, EnderecoRepository enderecoRepository, PedidoRepository pedidoRepository, PagamentoRepository pagamentoRepository){
+	public CursoSpringRestapiApplication(CategoriaRepository categoriaRepository,ProdutoRepository produtoRepository, CidadeRepository cidadeRepository, EstadoRepository estadoRepository, ClienteRepository clienteRepository, EnderecoRepository enderecoRepository, PedidoRepository pedidoRepository, PagamentoRepository pagamentoRepository, ItemPedidoRepository itemPedidoRepository){
 		this.categoriaRepository = categoriaRepository;
 		this.produtoRepository = produtoRepository;
 		this.cidadeRepository = cidadeRepository;
@@ -40,6 +41,7 @@ public class CursoSpringRestapiApplication implements CommandLineRunner {
 		this.enderecoRepository = enderecoRepository;
 		this.pedidoRepository = pedidoRepository;
 		this.pagamentoRepository = pagamentoRepository;
+		this.itemPedidoRepository = itemPedidoRepository;
 	}
 
 	@Override
@@ -68,6 +70,10 @@ public class CursoSpringRestapiApplication implements CommandLineRunner {
 		Pedido pedido1 = new Pedido(simpleDateFormat.parse("30/09/2017 10:32"), cliente1, endereco1);
 		Pedido pedido2 = new Pedido(simpleDateFormat.parse("30/09/2018 11:32"), cliente1, endereco2);
 
+		ItemPedido itemPedido1 = new ItemPedido(pedido1, produto1, 0.00, 1, 2000.00);
+		ItemPedido itemPedido2 = new ItemPedido(pedido1, produto3, 0.00,2,80.00);
+		ItemPedido itemPedido3 = new ItemPedido(pedido2, produto2, 100.00,1,800.00);
+
 		Pagamento pagamento1 = new PagamentoComCartao(EstadoPagamento.QUITADO, pedido1, 6);
 		pedido1.setPagamento(pagamento1);
 
@@ -87,6 +93,13 @@ public class CursoSpringRestapiApplication implements CommandLineRunner {
 		cliente1.getEnderecos().addAll(Arrays.asList(endereco1, endereco2));
 		cliente1.getPedidos().addAll(Arrays.asList(pedido1, pedido2));
 
+		pedido1.getItens().addAll(Arrays.asList(itemPedido1, itemPedido2));
+		pedido2.getItens().addAll(Arrays.asList(itemPedido3));
+
+		produto1.getItens().addAll(Arrays.asList(itemPedido1));
+		produto2.getItens().addAll(Arrays.asList(itemPedido3));
+		produto3.getItens().addAll(Arrays.asList(itemPedido2));
+
 		categoriaRepository.saveAll(Arrays.asList(categoria1,categoria2));
 		produtoRepository.saveAll(Arrays.asList(produto1, produto2, produto3));
 		cidadeRepository.saveAll(Arrays.asList(cidade1, cidade2, cidade3));
@@ -95,6 +108,6 @@ public class CursoSpringRestapiApplication implements CommandLineRunner {
 		enderecoRepository.saveAll(Arrays.asList(endereco1, endereco2));
 		pedidoRepository.saveAll(Arrays.asList(pedido1, pedido2));
 		pagamentoRepository.saveAll(Arrays.asList(pagamento1, pagamento2));
-
+		itemPedidoRepository.saveAll(Arrays.asList(itemPedido1, itemPedido2, itemPedido3));
 	}
 }
