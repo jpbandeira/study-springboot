@@ -1,5 +1,6 @@
 package com.jpbandeira.springrestapi.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.jpbandeira.springrestapi.enums.TipoCliente;
 
@@ -20,9 +21,10 @@ public class Cliente extends AbstractEntity<Long>  implements Serializable {
     /*Nessea atributo não sera armazenado um dado tipo cliente, mas sim um dado do tipo inteiro
     * Internamente o tipo cliente sera armazenado como inteiro, mas de maneira externa a classe expoe um dado do tipo CLiente*/
     private Integer tipoCliente;
-    @JsonManagedReference
+
     @OneToMany(mappedBy = "cliente")
     private List<Endereco> enderecos = new ArrayList<>();
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<>();
     @ElementCollection

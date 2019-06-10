@@ -1,6 +1,7 @@
 package com.jpbandeira.springrestapi.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,7 +18,7 @@ public class Produto extends AbstractEntity<Long>  implements Serializable {
 
     /*Essa anotação verifica se no outro lado da associação já foi buscado os objetos, então ele omite a lista
     * de categorias para cada produto*/
-    @JsonBackReference
+    @JsonIgnore
     @ManyToMany
     /*Como nesse caso temos uma relação de muitos para muitos entre produto e categoria
      * é usada a anotação JoinTable, onde será criada uma tabela de comunicação entre as duas tabelas
@@ -26,6 +27,7 @@ public class Produto extends AbstractEntity<Long>  implements Serializable {
      * joinColum informa o nome da campo em que esta sendo feito o mapeamento e inverseJoinColumns informa no nome do campo da tabela inversa ao mapeamento*/
     @JoinTable(name = "Produto_Categoria", joinColumns = @JoinColumn(name = "Produto_id"), inverseJoinColumns = @JoinColumn(name = "Categoria_id"))
     private List<Categoria> categorias = new ArrayList<>();
+    @JsonIgnore
     @OneToMany(mappedBy = "id.produto")
     private Set<ItemPedido> itens = new HashSet<>();
 
@@ -36,6 +38,7 @@ public class Produto extends AbstractEntity<Long>  implements Serializable {
         this.preco = preco;
     }
 
+    @JsonIgnore
     public List<Pedido> getPedidos(){
         List<Pedido> listaPedidos = new ArrayList<>();
         for(ItemPedido itemPedido : itens){

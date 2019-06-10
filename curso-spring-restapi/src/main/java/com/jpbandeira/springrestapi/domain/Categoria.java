@@ -15,7 +15,7 @@ public class Categoria extends AbstractEntity<Long> implements Serializable {
 	
 	private String nome;
 	/*Essa anotação faz a gerencia do objetos associados vindos do outro dominio, transformando em json os seus dados*/
-	@JsonManagedReference
+
 	/*No caso desse lado, como o mapeamento foi feito pela entidade Produto, aqui é colocada a anotação ManyToMany
 	* informando com o mappedBy que foi mapeado pela entidade categorias*/
 	@ManyToMany(mappedBy = "categorias")

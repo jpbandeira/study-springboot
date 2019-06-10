@@ -1,6 +1,6 @@
 package com.jpbandeira.springrestapi.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -11,7 +11,7 @@ import java.util.Objects;
 @Entity
 public class Estado extends AbstractEntity<Long>  implements Serializable {
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "estado")
     private List<Cidade> cidades = new ArrayList<>();
 

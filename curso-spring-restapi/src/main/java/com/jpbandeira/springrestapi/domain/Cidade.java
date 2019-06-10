@@ -1,6 +1,6 @@
 package com.jpbandeira.springrestapi.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.io.Serializable;
@@ -11,7 +11,7 @@ import javax.persistence.*;
 public class Cidade extends AbstractEntity<Long>  implements Serializable {
     private String nome;
 
-    @JsonManagedReference
+
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "estado_id")
     private Estado estado;

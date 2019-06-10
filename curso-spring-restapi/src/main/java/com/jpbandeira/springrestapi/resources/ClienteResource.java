@@ -20,7 +20,7 @@ public class ClienteResource {
     private ClienteService clienteService;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<?> find(@PathVariable Integer id) throws ObjectNotFoundException{
+    public ResponseEntity<?> find(@PathVariable Long id) throws ObjectNotFoundException{
         Optional<Cliente> objetoCategoria = Optional.ofNullable(clienteService.buscarCliente(id));
         return ResponseEntity.ok().body(objetoCategoria);
     }

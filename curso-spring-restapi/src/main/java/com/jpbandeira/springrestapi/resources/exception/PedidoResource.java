@@ -1,8 +1,7 @@
-package com.jpbandeira.springrestapi.resources;
+package com.jpbandeira.springrestapi.resources.exception;
 
-
-import java.util.Optional;
-
+import com.jpbandeira.springrestapi.domain.Pedido;
+import com.jpbandeira.springrestapi.services.PedidoService;
 import javassist.tools.rmi.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,19 +10,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jpbandeira.springrestapi.domain.Categoria;
-import com.jpbandeira.springrestapi.services.CategoriaService;
+import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/categorias")
-public class CategoriaResource {
+@RequestMapping(value = "/pedidos")
+public class PedidoResource {
 	
 	@Autowired
-	private CategoriaService categoriaService;
+	private PedidoService pedidoService;
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<?> find(@PathVariable Long id) throws ObjectNotFoundException {
-		Optional<Categoria> objetoCategoria = Optional.ofNullable(categoriaService.buscarCategoria(id));
+		Optional<Pedido> objetoCategoria = Optional.ofNullable(pedidoService.buscarPedido(id));
 		return ResponseEntity.ok().body(objetoCategoria);
 	}
 }
