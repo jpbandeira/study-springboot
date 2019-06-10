@@ -8,10 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Cidade")
-public class Cidade implements Serializable {
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
+public class Cidade extends AbstractEntity<Long>  implements Serializable {
     private String nome;
 
     @JsonManagedReference
@@ -21,21 +18,11 @@ public class Cidade implements Serializable {
 
     public Cidade(){}
 
-    public Cidade(Integer id, String nome, Estado estado) {
-        this.id = id;
+    public Cidade(String nome, Estado estado) {
+
         this.nome = nome;
         this.estado = estado;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNome() {
+    }public String getNome() {
         return nome;
     }
 
@@ -49,20 +36,5 @@ public class Cidade implements Serializable {
 
     public void setEstado(Estado estado) {
         this.estado = estado;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Cidade cidade = (Cidade) o;
-
-        return id != null ? id.equals(cidade.id) : cidade.id == null;
-    }
-
-    @Override
-    public int hashCode() {
-        return id != null ? id.hashCode() : 0;
     }
 }

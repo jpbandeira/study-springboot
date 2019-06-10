@@ -7,9 +7,7 @@ import java.io.Serializable;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Pagamento implements Serializable {
-    @Id
-    private Integer id;
+public class Pagamento extends AbstractEntity<Long>  implements Serializable {
     private Integer estadoPagamento;
     @OneToOne
     @JoinColumn(name = "pedido_id")
@@ -18,21 +16,11 @@ public class Pagamento implements Serializable {
 
     public Pagamento(){}
 
-    public Pagamento(Integer id,EstadoPagamento estadoPagamento, Pedido pedido) {
-        this.id = id;
+    public Pagamento(EstadoPagamento estadoPagamento, Pedido pedido) {
+
         this.estadoPagamento = estadoPagamento.getCodigo();
         this.pedido = pedido;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public EstadoPagamento getEstadoPagamento() {
+    }public EstadoPagamento getEstadoPagamento() {
         return EstadoPagamento.toEnum(estadoPagamento);
     }
 
@@ -46,20 +34,5 @@ public class Pagamento implements Serializable {
 
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Pagamento pagamento = (Pagamento) o;
-
-        return id != null ? id.equals(pagamento.id) : pagamento.id == null;
-    }
-
-    @Override
-    public int hashCode() {
-        return id != null ? id.hashCode() : 0;
     }
 }

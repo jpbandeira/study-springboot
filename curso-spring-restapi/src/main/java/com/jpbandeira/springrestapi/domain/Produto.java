@@ -8,11 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Produto implements Serializable {
+public class Produto extends AbstractEntity<Long>  implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
     private String nome;
     private Double preco;
 
@@ -30,8 +27,7 @@ public class Produto implements Serializable {
 
     public Produto(){}
 
-    public Produto(Integer id,String nome, Double preco) {
-        this.id = id;
+    public Produto(String nome, Double preco) {
         this.nome = nome;
         this.preco = preco;
     }
@@ -58,20 +54,5 @@ public class Produto implements Serializable {
 
     public void setCategorias(List<Categoria> categorias) {
         this.categorias = categorias;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Produto produto = (Produto) o;
-
-        return id != null ? id.equals(produto.id) : produto.id == null;
-    }
-
-    @Override
-    public int hashCode() {
-        return id != null ? id.hashCode() : 0;
     }
 }

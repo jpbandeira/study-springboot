@@ -11,10 +11,8 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-public class Cliente implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+public class Cliente extends AbstractEntity<Long>  implements Serializable {
+
     private String nome;
     private String email;
     private String cpfOuCnpj;
@@ -33,23 +31,12 @@ public class Cliente implements Serializable {
 
     public  Cliente(){}
 
-    public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipoCliente) {
-        this.id = id;
+    public Cliente(String nome, String email, String cpfOuCnpj, TipoCliente tipoCliente) {
         this.nome = nome;
         this.email = email;
         this.cpfOuCnpj = cpfOuCnpj;
         this.tipoCliente = tipoCliente.getCodigo();
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNome() {
+    }public String getNome() {
         return nome;
     }
 
@@ -106,19 +93,6 @@ public class Cliente implements Serializable {
 
     public void setPedidos(List<Pedido> pedidos) {
         this.pedidos = pedidos;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Cliente cliente = (Cliente) o;
-        return id != null ? id.equals(cliente.id) : cliente.id == null;
-    }
-
-    @Override
-    public int hashCode() {
-        return id != null ? id.hashCode() : 0;
     }
 }
 

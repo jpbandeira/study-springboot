@@ -7,10 +7,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class Pedido implements Serializable {
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer id;
+public class Pedido extends AbstractEntity<Long>  implements Serializable {
     private Date instantePedido;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
     private Pagamento pagamento;
@@ -23,22 +20,11 @@ public class Pedido implements Serializable {
 
     public Pedido(){}
 
-    public Pedido(Integer id,Date instantePedido, Cliente cliente, Endereco enderecoEntrega) {
-        this.id = id;
+    public Pedido(Date instantePedido, Cliente cliente, Endereco enderecoEntrega) {
         this.instantePedido = instantePedido;
         this.cliente = cliente;
         this.enderecoEntrega = enderecoEntrega;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Date getInstantePedido() {
+    }public Date getInstantePedido() {
         return instantePedido;
     }
 
@@ -68,20 +54,5 @@ public class Pedido implements Serializable {
 
     public void setEnderecoEntrega(Endereco enderecoEntrega) {
         this.enderecoEntrega = enderecoEntrega;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Pedido pedido = (Pedido) o;
-
-        return id != null ? id.equals(pedido.id) : pedido.id == null;
-    }
-
-    @Override
-    public int hashCode() {
-        return id != null ? id.hashCode() : 0;
     }
 }

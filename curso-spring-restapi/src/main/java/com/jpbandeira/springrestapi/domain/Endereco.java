@@ -6,10 +6,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-public class Endereco implements Serializable {
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer id;
+public class Endereco extends AbstractEntity<Long>  implements Serializable {
+
     private String logadouro;
     private String numero;
     private String complemento;
@@ -27,8 +25,8 @@ public class Endereco implements Serializable {
 
     public Endereco(){}
 
-    public Endereco(Integer id, String logadouro, String numero, String complemento, String bairro, String cep, Cliente cliente, Cidade cidade) {
-        this.id = id;
+    public Endereco(String logadouro, String numero, String complemento, String bairro, String cep, Cliente cliente, Cidade cidade) {
+
         this.logadouro = logadouro;
         this.numero = numero;
         this.complemento = complemento;
@@ -36,17 +34,7 @@ public class Endereco implements Serializable {
         this.cep = cep;
         this.cliente = cliente;
         this.cidade = cidade;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getLogadouro() {
+    }public String getLogadouro() {
         return logadouro;
     }
 
@@ -100,20 +88,5 @@ public class Endereco implements Serializable {
 
     public void setCidade(Cidade cidade) {
         this.cidade = cidade;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Endereco endereco = (Endereco) o;
-
-        return id != null ? id.equals(endereco.id) : endereco.id == null;
-    }
-
-    @Override
-    public int hashCode() {
-        return id != null ? id.hashCode() : 0;
     }
 }

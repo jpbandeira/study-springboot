@@ -10,12 +10,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Categoria")
-public class Categoria implements Serializable {
+public class Categoria extends AbstractEntity<Long> implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	
 	private String nome;
 	/*Essa anotação faz a gerencia do objetos associados vindos do outro dominio, transformando em json os seus dados*/
 	@JsonManagedReference
@@ -26,8 +23,7 @@ public class Categoria implements Serializable {
 	
 	public Categoria() {}
 
-	public Categoria(Integer id,String nome) {
-		this.id = id;
+	public Categoria(String nome) {
 		this.nome = nome;
 	}
 
@@ -45,20 +41,5 @@ public class Categoria implements Serializable {
 
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-
-		Categoria categoria = (Categoria) o;
-
-		return id != null ? id.equals(categoria.id) : categoria.id == null;
-	}
-
-	@Override
-	public int hashCode() {
-		return id != null ? id.hashCode() : 0;
 	}
 }

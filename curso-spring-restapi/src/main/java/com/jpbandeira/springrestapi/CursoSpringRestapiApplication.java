@@ -44,34 +44,34 @@ public class CursoSpringRestapiApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Categoria categoria1 = new Categoria(null,"Informatica");
-		Categoria categoria2 = new Categoria(null,"Escritorio");
+		Categoria categoria1 = new Categoria("Informatica");
+		Categoria categoria2 = new Categoria("Escritorio");
 
-		Produto produto1 = new Produto(null,"Computador",2000.00);
-		Produto produto2 = new Produto(null,"Impressora",800.00);
-		Produto produto3 = new Produto(null,"Mouse",80.00);
+		Produto produto1 = new Produto("Computador",2000.00);
+		Produto produto2 = new Produto("Impressora",800.00);
+		Produto produto3 = new Produto("Mouse",80.00);
 
-		Estado estado1 = new Estado(null, "MG");
-		Estado estado2 = new Estado(null, "SP");
+		Estado estado1 = new Estado("MG");
+		Estado estado2 = new Estado ("SP");
 
-		Cidade cidade1 = new Cidade(null, "Uberlandia", estado1);
-		Cidade cidade2 = new Cidade(null, "São Paulo", estado2);
-		Cidade cidade3 = new Cidade(null, "Campinas", estado2);
+		Cidade cidade1 = new Cidade("Uberlandia", estado1);
+		Cidade cidade2 = new Cidade("São Paulo", estado2);
+		Cidade cidade3 = new Cidade("Campinas", estado2);
 
-		Cliente cliente1 = new Cliente(null, "João Pedro", "joao@pedro.com", "03054945000160", TipoCliente.PESSOAFISICA);
+		Cliente cliente1 = new Cliente("João Pedro", "joao@pedro.com", "03054945000160", TipoCliente.PESSOAFISICA);
 
 		cliente1.getTelefones().addAll(Arrays.asList("8599922035", "8599920350"));
 
-		Endereco endereco1 = new Endereco(null, "Rua Suiça", "120", "AP 202 B A9", "Maraponga", "60711035", cliente1, cidade1);
-		Endereco endereco2 = new Endereco(null, "Rua Alpha", "121", "AP 203 B A10", "Maraponga", "60711034", cliente1, cidade2);
+		Endereco endereco1 = new Endereco("Rua Suiça", "120", "AP 202 B A9", "Maraponga", "60711035", cliente1, cidade1);
+		Endereco endereco2 = new Endereco("Rua Alpha", "121", "AP 203 B A10", "Maraponga", "60711034", cliente1, cidade2);
 
-		Pedido pedido1 = new Pedido(null, simpleDateFormat.parse("30/09/2017 10:32"), cliente1, endereco1);
-		Pedido pedido2 = new Pedido(null, simpleDateFormat.parse("30/09/2018 11:32"), cliente1, endereco2);
+		Pedido pedido1 = new Pedido(simpleDateFormat.parse("30/09/2017 10:32"), cliente1, endereco1);
+		Pedido pedido2 = new Pedido(simpleDateFormat.parse("30/09/2018 11:32"), cliente1, endereco2);
 
-		Pagamento pagamento1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, pedido1, 6);
+		Pagamento pagamento1 = new PagamentoComCartao(EstadoPagamento.QUITADO, pedido1, 6);
 		pedido1.setPagamento(pagamento1);
 
-		Pagamento pagamento2 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE, pedido2, simpleDateFormat.parse("20/10/2017 00:00"), null);
+		Pagamento pagamento2 = new PagamentoComBoleto(EstadoPagamento.PENDENTE, pedido2, simpleDateFormat.parse("20/10/2017 00:00"), null);
 		pedido2.setPagamento(pagamento2);
 
 		categoria1.getProdutos().addAll(Arrays.asList(produto1, produto2, produto3));
