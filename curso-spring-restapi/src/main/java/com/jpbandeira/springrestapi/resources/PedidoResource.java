@@ -1,4 +1,4 @@
-package com.jpbandeira.springrestapi.resources.exception;
+package com.jpbandeira.springrestapi.resources;
 
 import com.jpbandeira.springrestapi.domain.Pedido;
 import com.jpbandeira.springrestapi.services.PedidoService;
