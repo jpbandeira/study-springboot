@@ -13,12 +13,13 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 @SpringBootApplication
-public class CursoSpringRestapiApplication implements CommandLineRunner {
+public class CursoSpringRestapiApplication /*implements CommandLineRunner */{
 
 	public static void main(String[] args) {
 		SpringApplication.run(CursoSpringRestapiApplication.class, args);
 	}
 
+/*
 	private CategoriaRepository categoriaRepository;
 	private ProdutoRepository produtoRepository;
 	private CidadeRepository cidadeRepository;
@@ -110,4 +111,5 @@ public class CursoSpringRestapiApplication implements CommandLineRunner {
 		pagamentoRepository.saveAll(Arrays.asList(pagamento1, pagamento2));
 		itemPedidoRepository.saveAll(Arrays.asList(itemPedido1, itemPedido2, itemPedido3));
 	}
+*/
 }

@@ -8,7 +8,10 @@ import java.io.Serializable;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Pagamento extends AbstractEntity<Long>  implements Serializable {
+public class Pagamento  implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private Integer estadoPagamento;
     @JsonIgnore
     @OneToOne
@@ -37,5 +40,14 @@ public class Pagamento extends AbstractEntity<Long>  implements Serializable {
 
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
+    }
+
+    @Override
+    public String toString() {
+        return "Pagamento{" +
+                "id=" + id +
+                ", estadoPagamento=" + estadoPagamento +
+                ", pedido=" + pedido +
+                '}';
     }
 }

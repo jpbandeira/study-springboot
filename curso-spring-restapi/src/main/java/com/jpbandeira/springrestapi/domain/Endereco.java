@@ -6,8 +6,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-public class Endereco extends AbstractEntity<Long>  implements Serializable {
-
+public class Endereco  implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String logadouro;
     private String numero;
     private String complemento;
@@ -88,5 +90,19 @@ public class Endereco extends AbstractEntity<Long>  implements Serializable {
 
     public void setCidade(Cidade cidade) {
         this.cidade = cidade;
+    }
+
+    @Override
+    public String toString() {
+        return "Endereco{" +
+                "id=" + id +
+                ", logadouro='" + logadouro + '\'' +
+                ", numero='" + numero + '\'' +
+                ", complemento='" + complemento + '\'' +
+                ", bairro='" + bairro + '\'' +
+                ", cep='" + cep + '\'' +
+                ", cliente=" + cliente +
+                ", cidade=" + cidade +
+                '}';
     }
 }

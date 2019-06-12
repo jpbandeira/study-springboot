@@ -12,8 +12,10 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-public class Cliente extends AbstractEntity<Long>  implements Serializable {
-
+public class Cliente  implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nome;
     private String email;
     private String cpfOuCnpj;
@@ -95,6 +97,20 @@ public class Cliente extends AbstractEntity<Long>  implements Serializable {
 
     public void setPedidos(List<Pedido> pedidos) {
         this.pedidos = pedidos;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
+                ", cpfOuCnpj='" + cpfOuCnpj + '\'' +
+                ", tipoCliente=" + tipoCliente +
+                ", enderecos=" + enderecos +
+                ", pedidos=" + pedidos +
+                ", telefones=" + telefones +
+                '}';
     }
 }
 

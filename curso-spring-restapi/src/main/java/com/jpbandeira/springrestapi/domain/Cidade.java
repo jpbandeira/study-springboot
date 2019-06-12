@@ -8,10 +8,11 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Cidade")
-public class Cidade extends AbstractEntity<Long>  implements Serializable {
+public class Cidade  implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nome;
-
-
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "estado_id")
     private Estado estado;
@@ -36,5 +37,14 @@ public class Cidade extends AbstractEntity<Long>  implements Serializable {
 
     public void setEstado(Estado estado) {
         this.estado = estado;
+    }
+
+    @Override
+    public String toString() {
+        return "Cidade{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", estado=" + estado +
+                '}';
     }
 }

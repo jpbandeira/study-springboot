@@ -11,8 +11,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Pedido extends AbstractEntity<Long>  implements Serializable {
-
+public class Pedido  implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private Date instantePedido;
 
@@ -76,5 +78,17 @@ public class Pedido extends AbstractEntity<Long>  implements Serializable {
 
     public void setItens(Set<ItemPedido> itens) {
         this.itens = itens;
+    }
+
+    @Override
+    public String toString() {
+        return "Pedido{" +
+                "id=" + id +
+                ", instantePedido=" + instantePedido +
+                ", pagamento=" + pagamento +
+                ", cliente=" + cliente +
+                ", enderecoEntrega=" + enderecoEntrega +
+                ", itens=" + itens +
+                '}';
     }
 }

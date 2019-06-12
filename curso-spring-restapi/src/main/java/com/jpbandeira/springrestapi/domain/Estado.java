@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 @Entity
-public class Estado extends AbstractEntity<Long>  implements Serializable {
-
+public class Estado  implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @JsonIgnore
     @OneToMany(mappedBy = "estado")
     private List<Cidade> cidades = new ArrayList<>();
@@ -39,5 +41,14 @@ public class Estado extends AbstractEntity<Long>  implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    @Override
+    public String toString() {
+        return "Estado{" +
+                "id=" + id +
+                ", cidades=" + cidades +
+                ", nome='" + nome + '\'' +
+                '}';
     }
 }

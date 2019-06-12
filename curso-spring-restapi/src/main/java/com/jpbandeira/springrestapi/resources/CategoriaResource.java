@@ -22,7 +22,7 @@ public class CategoriaResource {
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<?> find(@PathVariable Long id) throws ObjectNotFoundException {
-		Optional<Categoria> objetoCategoria = Optional.ofNullable(categoriaService.buscarCategoria(id));
+		Optional<Categoria> objetoCategoria = Optional.ofNullable(categoriaService.find(id));
 		return ResponseEntity.ok().body(objetoCategoria);
 	}
 
@@ -33,5 +33,18 @@ public class CategoriaResource {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(objetoCategoria.getId()).toUri();
 
 		return ResponseEntity.created(uri).build();
+	}
+
+	/*@PutMapping(value = "/{id}")
+	public ResponseEntity<Void> update(@RequestBody Categoria objetoCategoria, @PathVariable Long id){
+		objetoCategoria = categoriaService.update(objetoCategoria);
+		return ResponseEntity.noContent().build();
+	}*/
+
+	@PutMapping()
+	public ResponseEntity<Void> update(@RequestBody Categoria objetoCategoria){
+		System.out.println(objetoCategoria.toString());
+		categoriaService.update(objetoCategoria);
+		return ResponseEntity.noContent().build();
 	}
 }

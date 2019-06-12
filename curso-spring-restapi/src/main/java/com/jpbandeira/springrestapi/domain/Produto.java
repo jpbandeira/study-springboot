@@ -11,8 +11,10 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-public class Produto extends AbstractEntity<Long>  implements Serializable {
-
+public class Produto  implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nome;
     private Double preco;
 
@@ -77,5 +79,16 @@ public class Produto extends AbstractEntity<Long>  implements Serializable {
 
     public void setItens(Set<ItemPedido> itens) {
         this.itens = itens;
+    }
+
+    @Override
+    public String toString() {
+        return "Produto{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", preco=" + preco +
+                ", categorias=" + categorias +
+                ", itens=" + itens +
+                '}';
     }
 }

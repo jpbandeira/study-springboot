@@ -10,9 +10,12 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Categoria")
-public class Categoria extends AbstractEntity<Long> implements Serializable {
+public class Categoria implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String nome;
 	/*Essa anotação faz a gerencia do objetos associados vindos do outro dominio, transformando em json os seus dados*/
 
@@ -41,5 +44,22 @@ public class Categoria extends AbstractEntity<Long> implements Serializable {
 
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
+	}
+
+	@Override
+	public String toString() {
+		return "Categoria{" +
+				"id=" + id +
+				", nome='" + nome + '\'' +
+				", produtos=" + produtos +
+				'}';
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 }
