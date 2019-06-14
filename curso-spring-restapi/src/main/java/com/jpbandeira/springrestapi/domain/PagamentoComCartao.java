@@ -16,12 +16,4 @@ public class PagamentoComCartao extends Pagamento {
         super(estadoPagamento, pedido);
         this.numeroDeParcelas = numeroDeParcelas;
     }
-
-    public Integer getNumeroDeParcelas() {
-        return numeroDeParcelas;
-    }
-
-    public void setNumeroDeParcelas(Integer numeroDeParcelas) {
-        this.numeroDeParcelas = numeroDeParcelas;
-    }
 }

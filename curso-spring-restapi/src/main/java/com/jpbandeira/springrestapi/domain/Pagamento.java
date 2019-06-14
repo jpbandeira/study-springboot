@@ -2,11 +2,13 @@ package com.jpbandeira.springrestapi.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jpbandeira.springrestapi.enums.EstadoPagamento;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Data
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Pagamento  implements Serializable {
     @Id
@@ -32,14 +34,6 @@ public class Pagamento  implements Serializable {
 
     public void setEstadoPagamento(EstadoPagamento estadoPagamento) {
         this.estadoPagamento = estadoPagamento.getCodigo();
-    }
-
-    public Pedido getPedido() {
-        return pedido;
-    }
-
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
     }
 
     @Override

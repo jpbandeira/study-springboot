@@ -1,5 +1,7 @@
 package com.jpbandeira.springrestapi.domain;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
@@ -7,6 +9,7 @@ import javax.persistence.ManyToOne;
 
 /*Informa que essa classe é um subtipo da classe em que ela será atributo*/
 @Embeddable
+@Data
 public class ItemPedidoPK implements Serializable {
     @ManyToOne
     @JoinColumn(name = "pedido_id")
@@ -14,22 +17,6 @@ public class ItemPedidoPK implements Serializable {
     @ManyToOne
     @JoinColumn(name = "produto_id")
     private Produto produto;
-
-    public Pedido getPedido() {
-        return pedido;
-    }
-
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
-    }
-
-    public Produto getProduto() {
-        return produto;
-    }
-
-    public void setProduto(Produto produto) {
-        this.produto = produto;
-    }
 
     @Override
     public boolean equals(Object o) {

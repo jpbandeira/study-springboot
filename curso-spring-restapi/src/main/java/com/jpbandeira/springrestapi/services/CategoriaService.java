@@ -28,4 +28,8 @@ public class CategoriaService {
 	public Categoria update(Categoria objetoCategoria){
 		return categoriaRepository.save(objetoCategoria);
 	}
+
+	public void delete(Long id) {
+		categoriaRepository.deleteById(id);
+	}
 }

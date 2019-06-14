@@ -1,12 +1,14 @@
 package com.jpbandeira.springrestapi.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+
+import lombok.Data;
 
 import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
+@Data
 @Table(name = "Cidade")
 public class Cidade  implements Serializable {
     @Id
@@ -20,22 +22,7 @@ public class Cidade  implements Serializable {
     public Cidade(){}
 
     public Cidade(String nome, Estado estado) {
-
         this.nome = nome;
-        this.estado = estado;
-    }public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Estado getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Estado estado) {
         this.estado = estado;
     }
 

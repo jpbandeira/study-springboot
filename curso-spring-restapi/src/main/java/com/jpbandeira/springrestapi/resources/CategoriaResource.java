@@ -35,16 +35,16 @@ public class CategoriaResource {
 		return ResponseEntity.created(uri).build();
 	}
 
-	/*@PutMapping(value = "/{id}")
-	public ResponseEntity<Void> update(@RequestBody Categoria objetoCategoria, @PathVariable Long id){
-		objetoCategoria = categoriaService.update(objetoCategoria);
-		return ResponseEntity.noContent().build();
-	}*/
-
 	@PutMapping()
 	public ResponseEntity<Void> update(@RequestBody Categoria objetoCategoria){
 		System.out.println(objetoCategoria.toString());
 		categoriaService.update(objetoCategoria);
 		return ResponseEntity.noContent().build();
+	}
+
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<Void> delete(@PathVariable Long id){
+		categoriaService.delete(id);
+		return  ResponseEntity.noContent().build();
 	}
 }
