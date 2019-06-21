@@ -68,5 +68,4 @@ public class CategoriaController {
 		Page<CategoriaDto> categoriaDtoList = categoriaList.map(objeto -> new CategoriaDto(objeto));
 		return ResponseEntity.ok().body(categoriaDtoList);
 	}
-
 }
