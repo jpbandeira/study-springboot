@@ -6,10 +6,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
-import org.hibernate.validator.constraints.Length;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Data
@@ -18,9 +15,7 @@ public class Categoria implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	@NotEmpty(message = "Preenchimento obrigatorio")
-	@Length(min = 5, max = 80, message = "Tamanho necessário entre 5 e 80 caracteres")
+	private Long id;;
 	private String nome;
 	@JsonManagedReference
 	@OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
@@ -28,7 +23,8 @@ public class Categoria implements Serializable {
 	
 	public Categoria() {}
 
-	public Categoria(String nome) {
+	public Categoria(Long id ,String nome) {
+		this.id = id;
 		this.nome = nome;
 	}
 

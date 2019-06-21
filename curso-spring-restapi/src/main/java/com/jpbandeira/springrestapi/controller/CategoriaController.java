@@ -24,38 +24,39 @@ import javax.validation.Valid;
 public class CategoriaController {
 	
 	@Autowired
-	private CategoriaService categoriaService;
+	private CategoriaService service;
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<?> find(@PathVariable Long id) throws ObjectNotFoundException {
-		Optional<Categoria> objetoCategoria = Optional.ofNullable(categoriaService.find(id));
-		return ResponseEntity.ok().body(objetoCategoria);
+		Optional<Categoria> objeto = Optional.ofNullable(service.find(id));
+		return ResponseEntity.ok().body(objeto);
 	}
 
 	@GetMapping()
 	public ResponseEntity<List<CategoriaDto>> findAll() throws ObjectNotFoundException {
-		List<Categoria> categoriaList = categoriaService.findAll();
+		List<Categoria> categoriaList = service.findAll();
 		List<CategoriaDto> categoriaDtoList = categoriaList.stream().map(objeto -> new CategoriaDto(objeto)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(categoriaDtoList);
 	}
 
 	@PostMapping
-	public ResponseEntity<Void> insert(@Valid @RequestBody Categoria objetoCategoria){
-		objetoCategoria = categoriaService.insert(objetoCategoria);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(objetoCategoria.getId()).toUri();
+	public ResponseEntity<Void> insert(@Valid @RequestBody CategoriaDto objetoDto){
+		Categoria objeto = service.fromDTO(objetoDto);
+		objeto = service.insert(objeto);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(objeto.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 
 	@PutMapping()
-	public ResponseEntity<Void> update(@Valid @RequestBody Categoria objetoCategoria){
-		System.out.println(objetoCategoria.toString());
-		categoriaService.update(objetoCategoria);
+	public ResponseEntity<Void> update(@Valid @RequestBody Categoria objeto) throws ObjectNotFoundException {
+		System.out.println(objeto.toString());
+		service.update(objeto);
 		return ResponseEntity.noContent().build();
 	}
 
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Long id){
-		categoriaService.delete(id);
+		service.delete(id);
 		return  ResponseEntity.noContent().build();
 	}
 
@@ -64,7 +65,7 @@ public class CategoriaController {
 									   @RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
 									   @RequestParam(value = "orderBy", defaultValue = "nome") String orderBy,
 									   @RequestParam(value = "direction", defaultValue = "ASC") String direction){
-		Page<Categoria> categoriaList = categoriaService.findPage(page, linesPerPage, orderBy, direction);
+		Page<Categoria> categoriaList = service.findPage(page, linesPerPage, orderBy, direction);
 		Page<CategoriaDto> categoriaDtoList = categoriaList.map(objeto -> new CategoriaDto(objeto));
 		return ResponseEntity.ok().body(categoriaDtoList);
 	}

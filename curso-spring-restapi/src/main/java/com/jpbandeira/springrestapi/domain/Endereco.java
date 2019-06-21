@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class Endereco  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id;;
     private String logadouro;
     private String numero;
     private String complemento;

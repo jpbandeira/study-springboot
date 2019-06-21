@@ -17,11 +17,11 @@ import java.util.Optional;
 public class PedidoController {
 	
 	@Autowired
-	private PedidoService pedidoService;
+	private PedidoService service;
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<?> find(@PathVariable Long id) throws ObjectNotFoundException {
-		Optional<Pedido> objetoCategoria = Optional.ofNullable(pedidoService.buscarPedido(id));
-		return ResponseEntity.ok().body(objetoCategoria);
+		Optional<Pedido> objeto = Optional.ofNullable(service.buscarPedido(id));
+		return ResponseEntity.ok().body(objeto);
 	}
 }

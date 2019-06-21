@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class Cidade  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id;;
     private String nome;
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "estado_id")

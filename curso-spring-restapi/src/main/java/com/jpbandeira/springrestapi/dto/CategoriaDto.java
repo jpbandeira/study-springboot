@@ -1,12 +1,18 @@
 package com.jpbandeira.springrestapi.dto;
 
 import com.jpbandeira.springrestapi.domain.Categoria;
+import lombok.Data;
+import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
+@Data
 public class CategoriaDto implements Serializable {
 
     private Long id;
+    @NotEmpty(message="Preenchimento obrigatório")
+    @Length(min=5, max=80, message="O tamanho deve ser entre 5 e 80 caracteres")
     private String nome;
 
     public CategoriaDto(){}
@@ -15,23 +21,6 @@ public class CategoriaDto implements Serializable {
         this.id = categoria.getId();
         this.nome = categoria.getNome();
     }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     /*Data Transfer Object (DTO) ou simplesmente Transfer Object é um padrão de projetos bastante usado em Java para o transporte de dados entre diferentes componentes
     de um sistema, diferentes instâncias ou processos de um sistema distribuído ou diferentes sistemas via serialização.
 

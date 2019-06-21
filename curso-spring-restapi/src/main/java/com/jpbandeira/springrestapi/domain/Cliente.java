@@ -1,6 +1,5 @@
 package com.jpbandeira.springrestapi.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.jpbandeira.springrestapi.enums.TipoCliente;
 import lombok.Data;
@@ -17,7 +16,7 @@ import java.util.Set;
 public class Cliente  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id;;
     private String nome;
     private String email;
     private String cpfOuCnpj;
@@ -26,7 +25,7 @@ public class Cliente  implements Serializable {
     private Integer tipoCliente;
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Endereco> enderecos = new ArrayList<>();
-    @JsonIgnore
+    @JsonManagedReference
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Pedido> pedidos = new ArrayList<>();
     @ElementCollection
@@ -35,11 +34,12 @@ public class Cliente  implements Serializable {
 
     public  Cliente(){}
 
-    public Cliente(String nome, String email, String cpfOuCnpj, TipoCliente tipoCliente) {
+    public Cliente(Long id ,String nome, String email, String cpfOuCnpj, TipoCliente tipoCliente) {
+        this.id = id;
         this.nome = nome;
         this.email = email;
         this.cpfOuCnpj = cpfOuCnpj;
-        this.tipoCliente = tipoCliente.getCodigo();
+        this.tipoCliente = (this.tipoCliente==null) ? null : tipoCliente.getCodigo();
     }
 
     public TipoCliente getTipoCliente() {

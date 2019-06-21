@@ -16,18 +16,18 @@ import java.util.Optional;
 public class ProdutoController {
 	
 	@Autowired
-	private ProdutoService produtoService;
+	private ProdutoService service;
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<?> find(@PathVariable Long id) throws ObjectNotFoundException {
-		Optional<Produto> objetoProduto = Optional.ofNullable(produtoService.find(id));
+		Optional<Produto> objetoProduto = Optional.ofNullable(service.find(id));
 		return ResponseEntity.ok().body(objetoProduto);
 	}
 
 
 	@PostMapping
 	public ResponseEntity<Void> insert(@RequestBody Produto objetoProduto){
-		objetoProduto = produtoService.insert(objetoProduto);
+		objetoProduto = service.insert(objetoProduto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(objetoProduto.getId()).toUri();
 
 		return ResponseEntity.created(uri).build();
@@ -36,13 +36,13 @@ public class ProdutoController {
 	@PutMapping
 	public ResponseEntity<Void> update(@RequestBody Produto objetoProduto){
 		System.out.println(objetoProduto.toString());
-		produtoService.update(objetoProduto);
+		service.update(objetoProduto);
 		return ResponseEntity.noContent().build();
 	}
 
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Long id){
-		produtoService.delete(id);
+		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 }

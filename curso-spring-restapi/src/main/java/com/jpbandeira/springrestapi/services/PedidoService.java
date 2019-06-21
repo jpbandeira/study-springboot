@@ -12,10 +12,10 @@ import java.util.Optional;
 public class PedidoService {
 
 	@Autowired
-	private PedidoRepository pedidoRepository;
+	private PedidoRepository repository;
 
 	public Pedido buscarPedido(Long id) throws ObjectNotFoundException {
-		Optional<Pedido> objetoPedido = pedidoRepository.findById(id);
+		Optional<Pedido> objetoPedido = repository.findById(id);
 		return objetoPedido.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Pedido.class.getName()));
 	}
 }

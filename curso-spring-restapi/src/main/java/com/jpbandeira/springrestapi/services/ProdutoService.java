@@ -13,23 +13,23 @@ import java.util.Optional;
 public class ProdutoService {
 
 	@Autowired
-	private ProdutoRepository produtoRepository;
+	private ProdutoRepository repository;
 
 	public Produto find(Long id) throws ObjectNotFoundException {
-		Optional<Produto> objetoProduto = produtoRepository.findById(id);
+		Optional<Produto> objetoProduto = repository.findById(id);
 		return objetoProduto.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Produto.class.getName()));
 	}
 
     public Produto insert(Produto objetoProduto) {
 		objetoProduto.setId(null);
-		return produtoRepository.save(objetoProduto);
+		return repository.save(objetoProduto);
     }
 
 	public Produto update(Produto objetoProduto){
-		return produtoRepository.save(objetoProduto);
+		return repository.save(objetoProduto);
 	}
 
 	public void delete(Long id) {
-		produtoRepository.deleteById(id);
+		repository.deleteById(id);
 	}
 }
