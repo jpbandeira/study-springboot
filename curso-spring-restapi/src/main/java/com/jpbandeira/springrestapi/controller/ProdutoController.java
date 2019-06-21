@@ -1,4 +1,4 @@
-package com.jpbandeira.springrestapi.resources;
+package com.jpbandeira.springrestapi.controller;
 
 import com.jpbandeira.springrestapi.domain.Produto;
 import com.jpbandeira.springrestapi.services.ProdutoService;
@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/produtos")
-public class ProdutoResource {
+public class ProdutoController {
 	
 	@Autowired
 	private ProdutoService produtoService;

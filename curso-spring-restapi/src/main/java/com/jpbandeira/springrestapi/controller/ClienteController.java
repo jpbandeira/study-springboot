@@ -1,4 +1,4 @@
-package com.jpbandeira.springrestapi.resources;
+package com.jpbandeira.springrestapi.controller;
 
 import com.jpbandeira.springrestapi.domain.Cliente;
 import com.jpbandeira.springrestapi.services.ClienteService;
@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/clientes")
-public class ClienteResource {
+public class ClienteController {
 
     @Autowired
     private ClienteService clienteService;

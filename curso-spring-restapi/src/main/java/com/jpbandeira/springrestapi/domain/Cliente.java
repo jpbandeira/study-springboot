@@ -21,11 +21,9 @@ public class Cliente  implements Serializable {
     private String nome;
     private String email;
     private String cpfOuCnpj;
-
     /*Nessea atributo não sera armazenado um dado tipo cliente, mas sim um dado do tipo inteiro
     * Internamente o tipo cliente sera armazenado como inteiro, mas de maneira externa a classe expoe um dado do tipo CLiente*/
     private Integer tipoCliente;
-
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Endereco> enderecos = new ArrayList<>();
     @JsonIgnore

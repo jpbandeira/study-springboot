@@ -1,4 +1,4 @@
-package com.jpbandeira.springrestapi.resources.exception;
+package com.jpbandeira.springrestapi.controller.exception;
 
 import javassist.tools.rmi.ObjectNotFoundException;
 import org.springframework.http.HttpStatus;

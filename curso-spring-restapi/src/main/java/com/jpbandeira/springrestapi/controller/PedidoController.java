@@ -1,4 +1,4 @@
-package com.jpbandeira.springrestapi.resources;
+package com.jpbandeira.springrestapi.controller;
 
 import com.jpbandeira.springrestapi.domain.Pedido;
 import com.jpbandeira.springrestapi.services.PedidoService;
@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/pedidos")
-public class PedidoResource {
+public class PedidoController {
 	
 	@Autowired
 	private PedidoService pedidoService;

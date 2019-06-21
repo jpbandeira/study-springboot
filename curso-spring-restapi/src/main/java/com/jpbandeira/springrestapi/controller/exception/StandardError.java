@@ -1,4 +1,4 @@
-package com.jpbandeira.springrestapi.resources.exception;
+package com.jpbandeira.springrestapi.controller.exception;
 
 public class StandardError {
     private Integer status;

@@ -1,6 +1,8 @@
 package com.jpbandeira.springrestapi.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -18,9 +20,9 @@ public class Produto  implements Serializable {
     private Long id;
     private String nome;
     private Double preco;
-    @JsonIgnore
+    @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "Categoria_id")
+    @JoinColumn(name = "categoria_id")
     private Categoria categoria;
     @JsonIgnore
     @OneToMany(mappedBy = "id.produto", cascade = CascadeType.ALL)
@@ -54,5 +56,5 @@ public class Produto  implements Serializable {
                 '}';
     }
     /*@JsonIgnore verifica se no outro lado da associação já foi buscado os objetos, então ele omite a lista
-     * de categorias para cada produto*/
+     de categorias para cada produto*/
 }

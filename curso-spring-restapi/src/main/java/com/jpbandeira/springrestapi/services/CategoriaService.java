@@ -1,9 +1,13 @@
 package com.jpbandeira.springrestapi.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import javassist.tools.rmi.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.jpbandeira.springrestapi.domain.Categoria;
@@ -31,5 +35,14 @@ public class CategoriaService {
 
 	public void delete(Long id) {
 		categoriaRepository.deleteById(id);
+	}
+
+	public List<Categoria> findAll() {
+		return categoriaRepository.findAll();
+	}
+
+	public Page<Categoria> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
+		PageRequest pageRequest  = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
+		return categoriaRepository.findAll(pageRequest);
 	}
 }
