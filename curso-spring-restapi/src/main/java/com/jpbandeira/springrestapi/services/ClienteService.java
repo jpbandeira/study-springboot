@@ -1,8 +1,11 @@
 package com.jpbandeira.springrestapi.services;
 
-import com.jpbandeira.springrestapi.domain.Categoria;
+import com.jpbandeira.springrestapi.domain.Cidade;
 import com.jpbandeira.springrestapi.domain.Cliente;
+import com.jpbandeira.springrestapi.domain.Endereco;
 import com.jpbandeira.springrestapi.dto.ClienteDto;
+import com.jpbandeira.springrestapi.dto.ClienteNewDto;
+import com.jpbandeira.springrestapi.enums.TipoCliente;
 import com.jpbandeira.springrestapi.repositories.ClienteRepository;
 import javassist.tools.rmi.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -36,6 +40,12 @@ public class ClienteService {
         newObj.setEmail(obj.getEmail());
     }
 
+    @Transactional
+    public Cliente insert(Cliente objeto) {
+        objeto.setId(null);
+        return repository.save(objeto);
+    }
+
     public void delete(Long id) {
         repository.deleteById(id);
     }
@@ -51,5 +61,20 @@ public class ClienteService {
 
     public Cliente fromDTO(ClienteDto objDto) {
         return new Cliente(objDto.getId(), objDto.getNome(), objDto.getEmail(), null, null);
+    }
+
+    public Cliente fromDTO(ClienteNewDto objDto) {
+        Cliente cliente = new Cliente(null, objDto.getNomeCliente(), objDto.getEmail(), objDto.getCpfOuCnpj(), TipoCliente.toEnum(objDto.getTipoCliente()));
+        Cidade cidade = new Cidade(objDto.getCidadeId(), null, null);
+        Endereco endereco = new Endereco(null, objDto.getLogadouro(), objDto.getNumero(), objDto.getComplemento(), objDto.getBairro(), objDto.getCep(), cliente, cidade);
+        cliente.getEnderecos().add(endereco);
+        cliente.getTelefones().add(objDto.getTelefone1());
+        if(objDto.getTelefone2() != null){
+            cliente.getTelefones().add(objDto.getTelefone2());
+        }
+        if(objDto.getTelefone3() != null){
+            cliente.getTelefones().add(objDto.getTelefone3());
+        }
+        return cliente;
     }
 }

@@ -15,18 +15,17 @@ import java.util.Objects;
 public class Estado  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;;
+    private Long id;
+    private String nome;
     @JsonIgnore
     @OneToMany(mappedBy = "estado", cascade = CascadeType.ALL)
     private List<Cidade> cidades = new ArrayList<>();
 
-    private String nome;
-
     public Estado() {
     }
 
-    public Estado(String nome) {
-
+    public Estado(Long id ,String nome) {
+        this.id = id;
         this.nome = nome;
     }
 

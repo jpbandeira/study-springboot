@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class Cidade  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;;
+    private Long id;
     private String nome;
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "estado_id")
@@ -21,7 +21,8 @@ public class Cidade  implements Serializable {
 
     public Cidade(){}
 
-    public Cidade(String nome, Estado estado) {
+    public Cidade(Long id ,String nome, Estado estado) {
+        this.id = id;
         this.nome = nome;
         this.estado = estado;
     }

@@ -16,7 +16,7 @@ public class Pedido  implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;;
+    private Long id;
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private Date instantePedido;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")

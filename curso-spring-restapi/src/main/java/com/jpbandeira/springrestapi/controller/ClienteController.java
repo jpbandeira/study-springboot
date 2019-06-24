@@ -2,14 +2,17 @@ package com.jpbandeira.springrestapi.controller;
 
 import com.jpbandeira.springrestapi.domain.Cliente;
 import com.jpbandeira.springrestapi.dto.ClienteDto;
+import com.jpbandeira.springrestapi.dto.ClienteNewDto;
 import com.jpbandeira.springrestapi.services.ClienteService;
 import javassist.tools.rmi.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -32,6 +35,14 @@ public class ClienteController {
         List<Cliente> categoriaList = service.findAll();
         List<ClienteDto> categoriaDtoList = categoriaList.stream().map(objeto -> new ClienteDto(objeto)).collect(Collectors.toList());
         return ResponseEntity.ok().body(categoriaDtoList);
+    }
+
+    @PostMapping
+    public ResponseEntity<Void> insert(@RequestBody ClienteNewDto objetoDto){
+        Cliente objeto = service.fromDTO(objetoDto);
+        objeto = service.insert(objeto);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(objeto.getId()).toUri();
+        return ResponseEntity.created(uri).build();
     }
 
     @PutMapping()
