@@ -3,8 +3,10 @@ package com.jpbandeira.springrestapi.domain;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.jpbandeira.springrestapi.enums.TipoCliente;
 import lombok.Data;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -17,6 +19,8 @@ public class Cliente  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+//    @Length(min = 5, max = 120, message = "O tamanho deve ser entre 5 e 120 caracteres")
+//    @NotEmpty(message = "Preenchimento obrigatório")
     private String nome;
     private String email;
     private String cpfOuCnpj;

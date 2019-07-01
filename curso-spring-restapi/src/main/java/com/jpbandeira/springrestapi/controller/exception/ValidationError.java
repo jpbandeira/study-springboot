@@ -8,13 +8,13 @@ import java.util.List;
 @Data
 public class ValidationError extends StandardError {
 
-    List<FildMessage> errors = new ArrayList<>();
+    List<FieldMessage> errors = new ArrayList<>();
 
     public ValidationError(Integer status, String mensagemErro, Long timeStamp) {
         super(status, mensagemErro, timeStamp);
     }
 
     public void addError(String fildName, String message){
-        errors.add(new FildMessage(fildName, message));
+        errors.add(new FieldMessage(fildName, message));
     }
 }
