@@ -43,6 +43,5 @@ public class ClienteNewDto implements Serializable {
 
     private Long cidadeId;
 
-    public ClienteNewDto() {
-    }
+    public ClienteNewDto() {}
 }
