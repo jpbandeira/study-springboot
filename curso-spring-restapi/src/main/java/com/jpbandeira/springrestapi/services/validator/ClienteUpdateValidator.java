@@ -2,41 +2,30 @@ package com.jpbandeira.springrestapi.services.validator;
 
 import com.jpbandeira.springrestapi.controller.exception.FieldMessage;
 import com.jpbandeira.springrestapi.domain.Cliente;
-import com.jpbandeira.springrestapi.dto.ClienteNewDto;
-import com.jpbandeira.springrestapi.enums.TipoCliente;
+import com.jpbandeira.springrestapi.dto.ClienteDto;
 import com.jpbandeira.springrestapi.repositories.ClienteRepository;
-import com.jpbandeira.springrestapi.services.validator.br.BR;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.ConstraintValidator;
-
+import javax.validation.ConstraintValidatorContext;
 import java.util.ArrayList;
 import java.util.List;
-import javax.validation.ConstraintValidatorContext;
 
-public class ClienteInsertValidator implements ConstraintValidator<ClienteInsert, ClienteNewDto> {
+public class ClienteUpdateValidator implements ConstraintValidator<ClienteUpdate, ClienteDto> {
 
     @Autowired
     private ClienteRepository clienteRepository;
 
     @Override
-    public void initialize(ClienteInsert ann) {
+    public void initialize(ClienteUpdate ann) {
     }
 
     @Override
-    public boolean isValid(ClienteNewDto objDto, ConstraintValidatorContext context) {
+    public boolean isValid(ClienteDto objDto, ConstraintValidatorContext context) {
         List<FieldMessage> list = new ArrayList<>();
 
-        if(objDto.getTipoCliente().equals(TipoCliente.PESSOAFISICA.getCodigo()) && !BR.isValidCPF(objDto.getCpfOuCnpj())){
-            list.add(new FieldMessage("cpfOuCnpj", "CPF invalido"));
-        }
-
-        if(objDto.getTipoCliente().equals(TipoCliente.PESSOAJURIDICA.getCodigo()) && !BR.isValidCPF(objDto.getCpfOuCnpj())){
-            list.add(new FieldMessage("cpfOuCnpj", "CNPJ invalido"));
-        }
-
         Cliente clienteEmail = clienteRepository.findByEmail(objDto.getEmail());
-        if(clienteEmail != null){
+        if(clienteEmail != null && clienteEmail.getEmail() == objDto.getEmail()){
             list.add(new FieldMessage("email", "E-mail já exixstente"));
         }
 

@@ -1,0 +1,27 @@
+//POST
+{
+	"nome" : "Joao Pedro",
+	"email" : "joao@pedro.com",
+	"cpfOuCnpj" : "64763617087",
+	"tipoCliente" : 1,
+	"telefone1" : "85999220350",
+	"logadouro" : "rua suiça",
+	"numero" : "120",
+	"complemento" : "ap 102",
+	"bairro" : "maraponga",
+	"cep" : "60711035",
+	"cidadeId" : 1
+}
+
+//PUT
+{
+    "id" : 1,	
+	"nome" : "Joao Pedro",
+	"email" : "joao@pedro.com",
+	"cpfOuCnpj" : "64763617087",
+	"tipoCliente" : 1
+}
+
+insert into  estado values(1, 'CE');
+insert into  cidade values(1, 'Fortaleza', 1);
+select * from cidade
