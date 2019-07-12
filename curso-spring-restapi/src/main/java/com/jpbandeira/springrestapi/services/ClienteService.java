@@ -43,7 +43,7 @@ public class ClienteService {
     @Transactional
     public Cliente insert(Cliente objeto) {
         objeto.setId(null);
-        return repository.save(objeto);
+        return objeto =  repository.save(objeto);
     }
 
     public void delete(Long id) {

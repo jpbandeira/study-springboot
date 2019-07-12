@@ -8,7 +8,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
-@Data @ClienteInsert
+@Data
+@ClienteInsert
 public class ClienteNewDto implements Serializable {
 
     @Length(min = 5, max = 120, message = "O tamanho deve ser entre 5 e 120 caracteres")
@@ -43,5 +44,6 @@ public class ClienteNewDto implements Serializable {
 
     private Long cidadeId;
 
-    public ClienteNewDto() {}
+    public ClienteNewDto() {
+    }
 }

@@ -19,8 +19,8 @@ public class Cliente  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-//    @Length(min = 5, max = 120, message = "O tamanho deve ser entre 5 e 120 caracteres")
-//    @NotEmpty(message = "Preenchimento obrigatório")
+    @Length(min = 5, max = 120, message = "O tamanho deve ser entre 5 e 120 caracteres")
+    @NotEmpty(message = "Preenchimento obrigatório")
     private String nome;
     private String email;
     private String cpfOuCnpj;
@@ -36,14 +36,14 @@ public class Cliente  implements Serializable {
     @CollectionTable(name = "telefone")
     private Set<String> telefones = new HashSet<>();
 
-    public  Cliente(){}
+    public Cliente(){}
 
     public Cliente(Long id ,String nome, String email, String cpfOuCnpj, TipoCliente tipoCliente) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.cpfOuCnpj = cpfOuCnpj;
-        this.tipoCliente = (this.tipoCliente==null) ? null : tipoCliente.getCodigo();
+        this.tipoCliente = tipoCliente == null ? null : tipoCliente.getCodigo();
     }
 
     public TipoCliente getTipoCliente() {

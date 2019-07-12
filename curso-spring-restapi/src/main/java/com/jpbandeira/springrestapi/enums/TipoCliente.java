@@ -7,12 +7,12 @@ public enum TipoCliente {
     private Integer codigo;
     private String descrição;
 
-    private TipoCliente(int codigo, String descrição) {
+    private TipoCliente(Integer codigo, String descrição) {
         this.codigo = codigo;
         this.descrição = descrição;
     }
 
-    public int getCodigo() {
+    public Integer getCodigo() {
         return codigo;
     }
 
