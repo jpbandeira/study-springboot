@@ -2,7 +2,6 @@ package com.jpbandeira.springrestapi.domain;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.jpbandeira.springrestapi.enums.TipoCliente;
-import com.jpbandeira.springrestapi.services.validator.ClienteUpdate;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 

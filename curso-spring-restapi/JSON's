@@ -25,3 +25,23 @@
 insert into  estado values(1, 'CE');
 insert into  cidade values(1, 'Fortaleza', 1);
 select * from cidade
+
+Usei um modo mais fácil ... porém usei do modo do professor para fins didáticos..... se você tiver problemas basta fazer uma busca assim...'OBS:não coloquei a anotação @ClienteUpdate'
+
+if(aux != null && aux.getEmail() != objDto.getEmail()) {
+list.add(new FieldMessage("email", "Email já existe"));
+}
+
+e tratei a excessão no resources exception
+
+@ExceptionHandler(JDBCException.class)
+
+public ResponseEntity<StandardError> JdbcSQLException(JDBCException e, HttpServletResponse request){
+
+ValidationError err = new ValidationError(HttpStatus.BAD_REQUEST.value(),
+
+"Email existente na atualização",System.currentTimeMillis());
+
+return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
+
+}
