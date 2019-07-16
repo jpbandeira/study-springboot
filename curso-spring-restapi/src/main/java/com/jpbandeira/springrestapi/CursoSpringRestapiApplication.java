@@ -1,6 +1,5 @@
 package com.jpbandeira.springrestapi;
 
-
 import com.jpbandeira.springrestapi.domain.Cidade;
 import com.jpbandeira.springrestapi.domain.Estado;
 import com.jpbandeira.springrestapi.repositories.CidadeRepository;
@@ -23,10 +22,12 @@ public class CursoSpringRestapiApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws  Exception{
-			Estado estado = new Estado(null, "CE");
-			Cidade cidade = new Cidade(null, "Fortaleza", estado);
 
-			cidadeRepository.saveAll(Arrays.asList(cidade));
+		Estado estado = new Estado(null, "CE");
+		Cidade cidade = new Cidade(null, "Fortaleza", estado);
+
+		cidadeRepository.saveAll(Arrays.asList(cidade));
+
 		}
 	}
 

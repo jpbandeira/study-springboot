@@ -6,10 +6,11 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import javax.persistence.*;
 
 @Entity
-@Data
+@Data @EqualsAndHashCode
 @Table(name = "Categoria")
 public class Categoria implements Serializable {
 

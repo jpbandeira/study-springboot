@@ -1,10 +1,14 @@
 package com.jpbandeira.springrestapi.domain;
 
 import com.jpbandeira.springrestapi.enums.EstadoPagamento;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.Entity;
 
 @Entity
+@Data
+@EqualsAndHashCode
 public class PagamentoComCartao extends Pagamento {
     private Integer numeroDeParcelas;
 

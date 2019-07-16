@@ -3,6 +3,8 @@ package com.jpbandeira.springrestapi.domain;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -12,6 +14,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Data
+@EqualsAndHashCode
 public class Pedido  implements Serializable {
 
     @Id

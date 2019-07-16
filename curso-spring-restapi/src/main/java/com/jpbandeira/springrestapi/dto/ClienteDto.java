@@ -7,9 +7,10 @@ import javax.validation.constraints.NotEmpty;
 
 import com.jpbandeira.springrestapi.domain.Cliente;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.validator.constraints.Length;
 
-@Data
+@Data @EqualsAndHashCode
 public class ClienteDto implements Serializable {
 
     private Long id;

@@ -2,13 +2,14 @@ package com.jpbandeira.springrestapi.dto;
 
 import com.jpbandeira.springrestapi.services.validator.ClienteInsert;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
-@Data
+@Data @EqualsAndHashCode
 @ClienteInsert
 public class ClienteNewDto implements Serializable {
 

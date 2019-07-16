@@ -3,12 +3,13 @@ package com.jpbandeira.springrestapi.domain;
 
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-@Data
+@Data @EqualsAndHashCode
 @Table(name = "Cidade")
 public class Cidade  implements Serializable {
     @Id

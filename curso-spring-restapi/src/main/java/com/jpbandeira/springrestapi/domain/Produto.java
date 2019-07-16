@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,11 +14,11 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Data
+@Data @EqualsAndHashCode
 public class Produto  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private String nome;
     private Double preco;
     @JsonBackReference
@@ -30,7 +31,8 @@ public class Produto  implements Serializable {
 
     public Produto(){}
 
-    public Produto(String nome, Double preco, Categoria categoria) {
+    public Produto(Integer id,String nome, Double preco, Categoria categoria) {
+        this.id = id;
         this.nome = nome;
         this.preco = preco;
         this.categoria = categoria;

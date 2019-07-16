@@ -3,6 +3,7 @@ package com.jpbandeira.springrestapi.domain;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.jpbandeira.springrestapi.enums.TipoCliente;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Data
+@Data @EqualsAndHashCode
 public class Cliente  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

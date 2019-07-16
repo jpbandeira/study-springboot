@@ -3,12 +3,13 @@ package com.jpbandeira.springrestapi.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jpbandeira.springrestapi.enums.EstadoPagamento;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Data
+@Data @EqualsAndHashCode
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Pagamento  implements Serializable {
     @Id

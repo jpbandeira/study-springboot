@@ -1,6 +1,7 @@
 package com.jpbandeira.springrestapi.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 import javax.persistence.Embeddable;
@@ -9,7 +10,7 @@ import javax.persistence.ManyToOne;
 
 /*Informa que essa classe é um subtipo da classe em que ela será atributo*/
 @Embeddable
-@Data
+@Data @EqualsAndHashCode
 public class ItemPedidoPK implements Serializable {
     @ManyToOne
     @JoinColumn(name = "pedido_id")
