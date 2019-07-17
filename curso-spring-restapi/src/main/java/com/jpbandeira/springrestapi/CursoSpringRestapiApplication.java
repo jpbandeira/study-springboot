@@ -1,6 +1,5 @@
 package com.jpbandeira.springrestapi;
 
-
 import com.jpbandeira.springrestapi.domain.Cidade;
 import com.jpbandeira.springrestapi.domain.Estado;
 import com.jpbandeira.springrestapi.repositories.CidadeRepository;
@@ -29,4 +28,3 @@ public class CursoSpringRestapiApplication implements CommandLineRunner {
 			cidadeRepository.saveAll(Arrays.asList(cidade));
 		}
 	}
-
