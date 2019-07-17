@@ -22,6 +22,7 @@
 	"tipoCliente" : 1
 }
 
+//Script alimentação do banco
 insert into categoria values(1, 'cat1');
 insert into categoria values(2, 'cat2');
 insert into categoria values(3, 'cat3');
@@ -42,8 +43,6 @@ insert into produto values(9, 'prod9',900 ,6);
 insert into produto values(10, 'prod0',1000 ,6);
 insert into produto values(11, 'prod11',1100 ,7);
 
-select * from produto
-
 insert into  estado values(1, 'CE');
 insert into  cidade values(1, 'Fortaleza', 1);
-select * from cidade
+

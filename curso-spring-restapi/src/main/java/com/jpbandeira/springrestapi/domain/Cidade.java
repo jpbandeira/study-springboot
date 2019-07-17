@@ -10,7 +10,6 @@ import javax.persistence.*;
 
 @Entity
 @Data @EqualsAndHashCode
-@Table(name = "Cidade")
 public class Cidade  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -32,8 +32,6 @@ public class Pedido  implements Serializable {
     @ManyToOne
     @JoinColumn(name = "endereco_entrega_id")
     private Endereco enderecoEntrega;
-    @OneToMany(mappedBy = "id.pedido", cascade = CascadeType.ALL)
-    private Set<ItemPedido> itens = new HashSet<>();
 
     public Pedido(){}
 
@@ -43,15 +41,4 @@ public class Pedido  implements Serializable {
         this.enderecoEntrega = enderecoEntrega;
     }
 
-    @Override
-    public String toString() {
-        return "Pedido{" +
-                "id=" + id +
-                ", instantePedido=" + instantePedido +
-                ", pagamento=" + pagamento +
-                ", cliente=" + cliente +
-                ", enderecoEntrega=" + enderecoEntrega +
-                ", itens=" + itens +
-                '}';
-    }
 }

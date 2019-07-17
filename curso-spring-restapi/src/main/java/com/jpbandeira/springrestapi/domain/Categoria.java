@@ -11,7 +11,6 @@ import javax.persistence.*;
 
 @Entity
 @Data @EqualsAndHashCode
-@Table(name = "Categoria")
 public class Categoria implements Serializable {
 
 	@Id

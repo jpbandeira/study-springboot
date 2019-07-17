@@ -16,16 +16,14 @@ public class Pagamento  implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer estadoPagamento;
-    @JsonIgnore
-    @OneToOne
-    @JoinColumn(name = "pedido_id")
-    @MapsId
+    @JsonIgnore @OneToOne @JoinColumn(name = "pedido_id")
     private Pedido pedido;
 
     public Pagamento(){}
 
-    public Pagamento(EstadoPagamento estadoPagamento, Pedido pedido) {
-        this.estadoPagamento = (this.estadoPagamento==null) ? null : estadoPagamento.getCodigo();
+    public Pagamento(Long id ,EstadoPagamento estadoPagamento, Pedido pedido) {
+        this.id = id;
+        this.estadoPagamento = (estadoPagamento==null) ? null : estadoPagamento.getCodigo();
         this.pedido = pedido;
     }
 
@@ -37,12 +35,4 @@ public class Pagamento  implements Serializable {
         this.estadoPagamento = estadoPagamento.getCodigo();
     }
 
-    @Override
-    public String toString() {
-        return "Pagamento{" +
-                "id=" + id +
-                ", estadoPagamento=" + estadoPagamento +
-                ", pedido=" + pedido +
-                '}';
-    }
 }
