@@ -1,11 +1,12 @@
 package com.jpbandeira.springrestapi.controller.exception;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Data @EqualsAndHashCode
 public class ValidationError extends StandardError {
 
     List<FieldMessage> errors = new ArrayList<>();

@@ -1,4 +1,4 @@
-//POST
+﻿//POST CLIENTE
 {
 	"nome" : "Joao Pedro",
 	"email" : "joao@pedro.com",
@@ -13,35 +13,37 @@
 	"cidadeId" : 1
 }
 
-//PUT
+//PUT CLIENTE
 {
-    "id" : 1,	
+    	"id" : 1,	
 	"nome" : "Joao Pedro",
 	"email" : "joao@pedro.com",
 	"cpfOuCnpj" : "64763617087",
 	"tipoCliente" : 1
 }
 
+insert into categoria values(1, 'cat1');
+insert into categoria values(2, 'cat2');
+insert into categoria values(3, 'cat3');
+insert into categoria values(4, 'cat4');
+insert into categoria values(5, 'cat5');
+insert into categoria values(6, 'cat6');
+insert into categoria values(7, 'cat7');
+
+insert into produto values(1, 'prod1',100 ,4);
+insert into produto values(2, 'prod2',200 ,1);
+insert into produto values(3, 'prod3',300 ,1);
+insert into produto values(4, 'prod4',400 ,2);
+insert into produto values(5, 'prod5',500 ,3);
+insert into produto values(6, 'prod6',600 ,3);
+insert into produto values(7, 'prod7',700 ,4);
+insert into produto values(8, 'prod8',800 ,5);
+insert into produto values(9, 'prod9',900 ,6);
+insert into produto values(10, 'prod0',1000 ,6);
+insert into produto values(11, 'prod11',1100 ,7);
+
+select * from produto
+
 insert into  estado values(1, 'CE');
 insert into  cidade values(1, 'Fortaleza', 1);
 select * from cidade
-
-Usei um modo mais fácil ... porém usei do modo do professor para fins didáticos..... se você tiver problemas basta fazer uma busca assim...'OBS:não coloquei a anotação @ClienteUpdate'
-
-if(aux != null && aux.getEmail() != objDto.getEmail()) {
-list.add(new FieldMessage("email", "Email já existe"));
-}
-
-e tratei a excessão no resources exception
-
-@ExceptionHandler(JDBCException.class)
-
-public ResponseEntity<StandardError> JdbcSQLException(JDBCException e, HttpServletResponse request){
-
-ValidationError err = new ValidationError(HttpStatus.BAD_REQUEST.value(),
-
-"Email existente na atualização",System.currentTimeMillis());
-
-return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
-
-}

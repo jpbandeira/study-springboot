@@ -1,8 +1,9 @@
 package com.jpbandeira.springrestapi.controller.exception;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-@Data
+@Data @EqualsAndHashCode
 public class StandardError {
     private Integer status;
     private String mensagemErro;
