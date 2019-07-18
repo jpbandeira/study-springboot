@@ -1,5 +1,6 @@
 package com.jpbandeira.springrestapi.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jpbandeira.springrestapi.enums.EstadoPagamento;
 import lombok.Data;
@@ -16,7 +17,9 @@ public class Pagamento  implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer estadoPagamento;
-    @JsonIgnore @OneToOne @JoinColumn(name = "pedido_id")
+    @OneToOne
+    @JoinColumn(name = "pedido_id")
+    @JsonBackReference
     private Pedido pedido;
 
     public Pagamento(){}

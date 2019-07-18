@@ -13,9 +13,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
-@Data
-@EqualsAndHashCode
+@Entity @Data @EqualsAndHashCode
 public class Pedido  implements Serializable {
 
     @Id
@@ -24,6 +22,7 @@ public class Pedido  implements Serializable {
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private Date instantePedido;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
+    @JsonManagedReference
     private Pagamento pagamento;
     @JsonBackReference
     @ManyToOne
@@ -32,6 +31,9 @@ public class Pedido  implements Serializable {
     @ManyToOne
     @JoinColumn(name = "endereco_entrega_id")
     private Endereco enderecoEntrega;
+
+    @OneToMany(mappedBy = "id.pedido")
+    private Set<Carrinho> itens = new HashSet<>();
 
     public Pedido(){}
 

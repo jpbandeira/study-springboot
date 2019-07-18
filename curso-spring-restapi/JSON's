@@ -1,4 +1,4 @@
-﻿//POST CLIENTE
+﻿--POST CLIENTE
 {
 	"nome" : "Joao Pedro",
 	"email" : "joao@pedro.com",
@@ -13,16 +13,16 @@
 	"cidadeId" : 1
 }
 
-//PUT CLIENTE
+--PUT CLIENTE
 {
-    	"id" : 1,	
+    "id" : 1,	
 	"nome" : "Joao Pedro",
 	"email" : "joao@pedro.com",
 	"cpfOuCnpj" : "64763617087",
 	"tipoCliente" : 1
 }
 
-//Script alimentação do banco
+--Script alimentação do banco
 insert into categoria values(1, 'cat1');
 insert into categoria values(2, 'cat2');
 insert into categoria values(3, 'cat3');
@@ -43,6 +43,8 @@ insert into produto values(9, 'prod9',900 ,6);
 insert into produto values(10, 'prod0',1000 ,6);
 insert into produto values(11, 'prod11',1100 ,7);
 
-insert into  estado values(1, 'CE');
-insert into  cidade values(1, 'Fortaleza', 1);
+insert into pedido values(1, '17/07/2019 09:45', 1, 1);
+
+--insert into  estado values(1, 'CE');
+--insert into  cidade values(1, 'Fortaleza', 1);
 

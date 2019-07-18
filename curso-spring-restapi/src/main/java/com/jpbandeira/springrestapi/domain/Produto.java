@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.apache.tomcat.util.digester.ArrayStack;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,8 +14,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Entity
-@Data @EqualsAndHashCode
+@Entity @Data @EqualsAndHashCode
 public class Produto  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +26,9 @@ public class Produto  implements Serializable {
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
+    @OneToMany(mappedBy = "id.produto")
+    private Set<Carrinho> itens = new HashSet<>();
+
     public Produto(){}
 
     public Produto(Long id,String nome, Double preco, Categoria categoria) {
@@ -35,6 +38,12 @@ public class Produto  implements Serializable {
         this.categoria = categoria;
     }
 
-    /*@JsonIgnore verifica se no outro lado da associação já foi buscado os objetos, então ele omite a lista
-     de categorias para cada produto*/
+    public List<Pedido> getPedidos(){
+        List<Pedido> listaDePedidos = new ArrayList<>();
+        for(Carrinho pedidos : itens){
+            listaDePedidos.add(pedidos.getPedido());
+        }
+        return listaDePedidos;
+    }
+
 }
