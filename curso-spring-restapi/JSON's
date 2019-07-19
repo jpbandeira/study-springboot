@@ -1,10 +1,26 @@
-﻿--POST CLIENTE
+﻿--POST CLIENTE 1
 {
 	"nome" : "Joao Pedro",
 	"email" : "joao@pedro.com",
 	"cpfOuCnpj" : "64763617087",
 	"tipoCliente" : 1,
 	"telefone1" : "85999220350",
+	"logadouro" : "rua suiça",
+	"numero" : "120",
+	"complemento" : "ap 102",
+	"bairro" : "maraponga",
+	"cep" : "60711035",
+	"cidadeId" : 1
+}
+
+﻿--POST CLIENTE 2
+{
+	"nome" : "Joao Pedro",
+	"email" : "joao@gmail.com",
+	"cpfOuCnpj" : "43512291015",
+	"tipoCliente" : 1,
+	"telefone1" : "85999220350",
+	"telefone2" : "8599554477",
 	"logadouro" : "rua suiça",
 	"numero" : "120",
 	"complemento" : "ap 102",
@@ -43,7 +59,15 @@ insert into produto values(9, 'prod9',900 ,6);
 insert into produto values(10, 'prod0',1000 ,6);
 insert into produto values(11, 'prod11',1100 ,7);
 
-insert into pedido values(1, '17/07/2019 09:45', 1, 1);
+insert into pedido values(1, '17/07/2019 00:00', 1, 1);
+insert into pedido values(2, '17/07/2019 00:00', 2, 2);
+
+insert into pagamento values(1,1,1);
+
+insert into carrinho values(0.10, 100, 5, 1, 1);
+insert into carrinho values(0.20, 200, 5, 1, 2);
+insert into carrinho values(0.30, 300, 5, 2, 1);
+insert into carrinho values(0.40, 400, 5, 2, 2);
 
 --insert into  estado values(1, 'CE');
 --insert into  cidade values(1, 'Fortaleza', 1);
