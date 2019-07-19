@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -33,7 +32,7 @@ public class Pedido  implements Serializable {
     private Endereco enderecoEntrega;
 
     @OneToMany(mappedBy = "id.pedido")
-    private Set<Carrinho> itens = new HashSet<>();
+    private Set<ItemPedido> itens = new HashSet<>();
 
     public Pedido(){}
 

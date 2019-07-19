@@ -1,11 +1,8 @@
 package com.jpbandeira.springrestapi.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.apache.tomcat.util.digester.ArrayStack;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -27,7 +24,7 @@ public class Produto  implements Serializable {
     private Categoria categoria;
 
     @OneToMany(mappedBy = "id.produto")
-    private Set<Carrinho> itens = new HashSet<>();
+    private Set<ItemPedido> itens = new HashSet<>();
 
     public Produto(){}
 
@@ -40,7 +37,7 @@ public class Produto  implements Serializable {
 
     public List<Pedido> getPedidos(){
         List<Pedido> listaDePedidos = new ArrayList<>();
-        for(Carrinho pedidos : itens){
+        for(ItemPedido pedidos : itens){
             listaDePedidos.add(pedidos.getPedido());
         }
         return listaDePedidos;

@@ -8,20 +8,20 @@ import javax.persistence.Entity;
 
 @Entity
 @Data @EqualsAndHashCode
-public class Carrinho {
+public class ItemPedido {
 
     /*Id embutido em um tipo auxiliar*/
     @EmbeddedId
-    private CarrinhoPK id = new CarrinhoPK();
+    private ItemPedidoPK id = new ItemPedidoPK();
 
     private Double desconto;
     private Integer quantidade;
     private Double preco;
 
-    public Carrinho(){
+    public ItemPedido(){
     }
 
-    public Carrinho(Produto produto, Pedido pedido, Double desconto, Integer quantidade, Double preco) {
+    public ItemPedido(Produto produto, Pedido pedido, Double desconto, Integer quantidade, Double preco) {
         this.id.setPedido(pedido);
         this.id.setProduto(produto);
         this.desconto = desconto;

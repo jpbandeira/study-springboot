@@ -9,7 +9,7 @@ import javax.persistence.ManyToOne;
 import java.io.Serializable;
 
 @Data @EqualsAndHashCode @Embeddable
-public class CarrinhoPK implements Serializable {
+public class ItemPedidoPK implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "pedido_id")
