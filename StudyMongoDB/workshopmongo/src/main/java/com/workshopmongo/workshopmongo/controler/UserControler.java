@@ -1,5 +1,6 @@
 package com.workshopmongo.workshopmongo.controler;
 
+import com.workshopmongo.workshopmongo.domain.Post;
 import com.workshopmongo.workshopmongo.domain.User;
 import com.workshopmongo.workshopmongo.dto.UserDTO;
 import com.workshopmongo.workshopmongo.service.UserService;
@@ -21,25 +22,25 @@ public class UserControler {
     private UserService userService;
 
     @Autowired
-    public UserControler(UserService userService){
+    public UserControler(UserService userService) {
         this.userService = userService;
     }
 
     @GetMapping
-    public ResponseEntity<List<UserDTO>> findAll(){
+    public ResponseEntity<List<UserDTO>> findAll() {
         List<User> list = userService.findAll();
-        List<UserDTO> dtoList = list.stream().map(element -> new UserDTO(element)).collect(Collectors.toList());
+        List<UserDTO> dtoList = list.stream().map(element -> new UserDTO(Optional.ofNullable(element))).collect(Collectors.toList());
         return ResponseEntity.ok().body(dtoList);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<?> find(@PathVariable String id) throws ObjectNotFoundException {
+    public ResponseEntity<UserDTO> findById(@PathVariable String id) throws ObjectNotFoundException {
         Optional<User> objeto = Optional.ofNullable(userService.findById(id));
-        return ResponseEntity.ok().body(objeto);
+        return ResponseEntity.ok().body(new UserDTO(objeto));
     }
 
     @PostMapping
-    public ResponseEntity<Void> insert(@RequestBody UserDTO userDTO){
+    public ResponseEntity<Void> insert(@RequestBody UserDTO userDTO) {
         User user = userService.fromDTO(userDTO);
         user = userService.insert(user);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
@@ -48,15 +49,21 @@ public class UserControler {
     }
 
     @PostMapping(value = "/delete/{id}")
-    public ResponseEntity<Void> delete(@PathVariable String id){
+    public ResponseEntity<Void> delete(@PathVariable String id) {
         userService.delete(id);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping(value = "/update")
-    public ResponseEntity<Void> update(@RequestBody UserDTO userDTO){
-            User objeto = userService.fromDTO(userDTO);
-            userService.update(objeto);
-            return  ResponseEntity.noContent().build();
+    public ResponseEntity<Void> update(@RequestBody UserDTO userDTO) {
+        User objeto = userService.fromDTO(userDTO);
+        userService.update(objeto);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping(value = "/{id}/posts")
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) throws ObjectNotFoundException {
+        Optional<User> objeto = Optional.ofNullable(userService.findById(id));
+        return ResponseEntity.ok().body(objeto.get().getPosts());
     }
 }

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.Optional;
 
 @Data @NoArgsConstructor
 public class UserDTO implements Serializable {
@@ -13,9 +14,9 @@ public class UserDTO implements Serializable {
     private String name;
     private String email;
 
-    public UserDTO(User user){
-        this.id = user.getId();
-        this.name = user.getName();
-        this.email = user.getEmail();
+    public UserDTO(Optional<User> user){
+        this.id = user.get().getId();
+        this.name = user.get().getName();
+        this.email = user.get().getEmail();
     }
 }
