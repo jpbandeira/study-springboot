@@ -26,7 +26,7 @@ public class Instantiation implements CommandLineRunner {
     @Override
     public void run(String... arg0) throws Exception {
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
 
         userReposiroty.deleteAll();
@@ -38,14 +38,14 @@ public class Instantiation implements CommandLineRunner {
 
         userReposiroty.saveAll(Arrays.asList(maria, alex, bob));
 
-        Post post1 = new Post(null, sdf.parse("21/03/2018"), "Partiu viagem", "Vou viajar para São Paulo. Abraços!");
-        Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia", "Acordei feliz hoje!");
+        Post post1 = new Post(null, sdf.parse("2019-03-21"), "Partiu viagem", "Vou viajar para São Paulo. Abraços!");
+        Post post2 = new Post(null, sdf.parse("2019-03-23"), "Bom dia", "Acordei feliz hoje!");
 
         post1.setAuthor(new AuthorDTO(maria));
         post2.setAuthor(new AuthorDTO(maria));
 
-        ComentDTO comentDTO1 = new ComentDTO("Boa viagem", sdf.parse("27/08/2019"), new AuthorDTO(alex));
-        ComentDTO comentDTO2 = new ComentDTO("Bom dia", sdf.parse("27/08/2019"), new AuthorDTO(bob));
+        ComentDTO comentDTO1 = new ComentDTO("Boa viagem", sdf.parse("2019-08-27"), new AuthorDTO(alex));
+        ComentDTO comentDTO2 = new ComentDTO("Bom dia", sdf.parse("2019-08-27"), new AuthorDTO(bob));
 
         post1.getComentDTOS().addAll(Arrays.asList(comentDTO1));
         post2.getComentDTOS().addAll(Arrays.asList(comentDTO2));

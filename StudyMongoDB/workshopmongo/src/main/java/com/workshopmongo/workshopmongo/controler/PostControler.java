@@ -3,13 +3,13 @@ package com.workshopmongo.workshopmongo.controler;
 import com.workshopmongo.workshopmongo.domain.Post;
 import com.workshopmongo.workshopmongo.dto.PostDTO;
 import com.workshopmongo.workshopmongo.service.PostService;
+import com.workshopmongo.workshopmongo.util.URL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,4 +36,32 @@ public class PostControler {
         Post post = postService.findById(id);
         return ResponseEntity.ok().body(post);
     }
+
+    @GetMapping(value = "/search")
+    public ResponseEntity<List<Post>> findByTitle(@RequestParam(value = "text", defaultValue = "") String text){
+        text = URL.decodeParam(text);
+        List<Post> listTitle = postService.findByTitle(text);
+        List<Post> listBody = postService.findByBody(text);
+
+        if(listTitle.size() > 0){
+            return ResponseEntity.ok().body(listTitle);
+        }
+        if(listBody.size() > 0){
+            return ResponseEntity.ok().body(listBody);
+        }
+
+        return ResponseEntity.ok().build();
+    }
+
+    /*@GetMapping(value = "/fullsearch")
+    public ResponseEntity<List<Post>> fullSearch(
+            @RequestParam(value = "text", defaultValue = "") String text,
+            @RequestParam(value = "minDate", defaultValue = "") String minDate,
+            @RequestParam(value = "maxDate", defaultValue = "") String maxDate) throws ParseException {
+        text = URL.decodeParam(text);
+        Date max = URL.convertDate(maxDate, new Date());
+        Date min = URL.convertDate(minDate, new Date(0L));
+        List<Post> posts = postService.fullSearch(text, min, max);
+        return ResponseEntity.ok().body(posts);
+    }*/
 }
