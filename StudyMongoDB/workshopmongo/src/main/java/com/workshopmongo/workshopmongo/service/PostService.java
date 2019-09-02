@@ -42,9 +42,4 @@ public class PostService {
     public Post fromDTO(PostDTO postDTO){
         return  new Post(postDTO.getId(), postDTO.getDate(), postDTO.getTitle(), postDTO.getBody());
     }
-
-    public List<Post> fullSearch(String text, Date minDate, Date maxDate){
-        maxDate = new Date(maxDate.getTime() + 24 * 60 * 60 * 1000);
-        return postRepository.fullSearch(text, minDate, maxDate);
-    }
 }

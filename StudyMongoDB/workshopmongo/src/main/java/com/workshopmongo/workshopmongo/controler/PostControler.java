@@ -52,16 +52,4 @@ public class PostControler {
 
         return ResponseEntity.ok().build();
     }
-
-    /*@GetMapping(value = "/fullsearch")
-    public ResponseEntity<List<Post>> fullSearch(
-            @RequestParam(value = "text", defaultValue = "") String text,
-            @RequestParam(value = "minDate", defaultValue = "") String minDate,
-            @RequestParam(value = "maxDate", defaultValue = "") String maxDate) throws ParseException {
-        text = URL.decodeParam(text);
-        Date max = URL.convertDate(maxDate, new Date());
-        Date min = URL.convertDate(minDate, new Date(0L));
-        List<Post> posts = postService.fullSearch(text, min, max);
-        return ResponseEntity.ok().body(posts);
-    }*/
 }
