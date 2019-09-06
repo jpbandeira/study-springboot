@@ -17,6 +17,8 @@ import java.util.Set;
 @Entity
 @Data @EqualsAndHashCode
 public class Cliente  implements Serializable {
+    /*No atributo (private Integer tipoCliente;) não sera armazenado um dado tipo cliente, mas sim um dado do tipo inteiro
+     * Internamente o tipo cliente sera armazenado como inteiro, mas de maneira externa a classe expoe um dado do tipo CLiente*/
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,8 +28,6 @@ public class Cliente  implements Serializable {
     @Column(unique = true)
     private String email;
     private String cpfOuCnpj;
-    /*Nessea atributo não sera armazenado um dado tipo cliente, mas sim um dado do tipo inteiro
-    * Internamente o tipo cliente sera armazenado como inteiro, mas de maneira externa a classe expoe um dado do tipo CLiente*/
     private Integer tipoCliente;
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Endereco> enderecos = new ArrayList<>();
