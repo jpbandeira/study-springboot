@@ -1,17 +1,15 @@
 package com.jpbandeira.springrestapi.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
-@Entity @Data @EqualsAndHashCode
+@Entity @Data
 public class Produto  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +21,7 @@ public class Produto  implements Serializable {
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "id.produto")
     private Set<ItemPedido> itens = new HashSet<>();
 
@@ -35,6 +34,7 @@ public class Produto  implements Serializable {
         this.categoria = categoria;
     }
 
+    @JsonIgnore
     public List<Pedido> getPedidos(){
         List<Pedido> listaDePedidos = new ArrayList<>();
         for(ItemPedido pedidos : itens){
@@ -43,4 +43,16 @@ public class Produto  implements Serializable {
         return listaDePedidos;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Produto produto = (Produto) o;
+        return id.equals(produto.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

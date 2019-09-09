@@ -1,5 +1,6 @@
  package com.jpbandeira.springrestapi.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.jpbandeira.springrestapi.enums.TipoCliente;
 import lombok.Data;
@@ -31,7 +32,7 @@ public class Cliente  implements Serializable {
     private Integer tipoCliente;
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Endereco> enderecos = new ArrayList<>();
-    @JsonManagedReference
+    @JsonBackReference
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Pedido> pedidos = new ArrayList<>();
     @ElementCollection

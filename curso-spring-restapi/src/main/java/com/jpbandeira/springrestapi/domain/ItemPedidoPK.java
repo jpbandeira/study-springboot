@@ -1,5 +1,6 @@
 package com.jpbandeira.springrestapi.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -8,7 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.io.Serializable;
 
-@Data @EqualsAndHashCode @Embeddable
+@Data @Embeddable
 public class ItemPedidoPK implements Serializable {
 
     @ManyToOne
