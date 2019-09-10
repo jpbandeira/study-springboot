@@ -19,7 +19,7 @@ public class Pedido  implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private Date instantePedido;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
@@ -45,11 +45,11 @@ public class Pedido  implements Serializable {
         this.enderecoEntrega = enderecoEntrega;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

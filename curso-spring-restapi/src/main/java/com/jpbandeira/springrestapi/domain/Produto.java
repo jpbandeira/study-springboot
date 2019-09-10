@@ -13,7 +13,7 @@ import java.util.*;
 public class Produto  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private String nome;
     private Double preco;
     @JsonBackReference
@@ -27,7 +27,7 @@ public class Produto  implements Serializable {
 
     public Produto(){}
 
-    public Produto(Long id,String nome, Double preco, Categoria categoria) {
+    public Produto(Integer id,String nome, Double preco, Categoria categoria) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;

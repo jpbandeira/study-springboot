@@ -27,7 +27,7 @@ public class CategoriaController {
 	private CategoriaService service;
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<?> find(@PathVariable Long id) throws ObjectNotFoundException {
+	public ResponseEntity<?> find(@PathVariable Integer id) throws ObjectNotFoundException {
 		Optional<Categoria> objeto = Optional.ofNullable(service.find(id));
 		return ResponseEntity.ok().body(objeto);
 	}
@@ -55,7 +55,7 @@ public class CategoriaController {
 	}
 
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Void> delete(@PathVariable Long id){
+	public ResponseEntity<Void> delete(@PathVariable Integer id){
 		service.delete(id);
 		return  ResponseEntity.noContent().build();
 	}

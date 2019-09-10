@@ -13,7 +13,7 @@ import org.hibernate.validator.constraints.Length;
 @Data @EqualsAndHashCode
 public class ClienteDto implements Serializable {
 
-    private Long id;
+    private Integer id;
 
     @NotEmpty(message="Preenchimento obrigatório")
     @Length(min=5, max=120, message="O tamanho deve ser entre 5 e 120 caracteres")

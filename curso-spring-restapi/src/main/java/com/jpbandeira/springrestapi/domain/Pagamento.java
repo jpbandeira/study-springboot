@@ -15,7 +15,7 @@ import java.io.Serializable;
 public class Pagamento  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private Integer estadoPagamento;
     @OneToOne
     @JoinColumn(name = "pedido_id")
@@ -24,7 +24,7 @@ public class Pagamento  implements Serializable {
 
     public Pagamento(){}
 
-    public Pagamento(Long id ,EstadoPagamento estadoPagamento, Pedido pedido) {
+    public Pagamento(Integer id ,EstadoPagamento estadoPagamento, Pedido pedido) {
         this.id = id;
         this.estadoPagamento = (estadoPagamento==null) ? null : estadoPagamento.getCodigo();
         this.pedido = pedido;

@@ -20,7 +20,7 @@ public class PedidoController {
 	private PedidoService service;
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<?> find(@PathVariable Long id) throws ObjectNotFoundException {
+	public ResponseEntity<?> find(@PathVariable Integer id) throws ObjectNotFoundException {
 		Optional<Pedido> objeto = Optional.ofNullable(service.buscarPedido(id));
 		return ResponseEntity.ok().body(objeto);
 	}

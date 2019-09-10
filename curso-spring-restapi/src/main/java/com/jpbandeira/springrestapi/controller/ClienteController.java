@@ -25,7 +25,7 @@ public class ClienteController {
     private ClienteService service;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<?> find(@PathVariable Long id) throws ObjectNotFoundException{
+    public ResponseEntity<?> find(@PathVariable Integer id) throws ObjectNotFoundException{
         Optional<Cliente> objetoCliente = Optional.ofNullable(service.buscar(id));
         return ResponseEntity.ok().body(objetoCliente);
     }
@@ -53,7 +53,7 @@ public class ClienteController {
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id){
+    public ResponseEntity<Void> delete(@PathVariable Integer id){
         service.delete(id);
         return  ResponseEntity.noContent().build();
     }

@@ -22,7 +22,7 @@ public class Cliente  implements Serializable {
      * Internamente o tipo cliente sera armazenado como inteiro, mas de maneira externa a classe expoe um dado do tipo CLiente*/
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     @Length(min = 5, max = 120, message = "O tamanho deve ser entre 5 e 120 caracteres")
     @NotEmpty(message = "Preenchimento obrigatório")
     private String nome;
@@ -41,7 +41,7 @@ public class Cliente  implements Serializable {
 
     public Cliente(){}
 
-    public Cliente(Long id ,String nome, String email, String cpfOuCnpj, TipoCliente tipoCliente) {
+    public Cliente(Integer id ,String nome, String email, String cpfOuCnpj, TipoCliente tipoCliente) {
         this.id = id;
         this.nome = nome;
         this.email = email;

@@ -5,6 +5,6 @@ import com.jpbandeira.springrestapi.domain.Categoria;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CategoriaRepository extends JpaRepository<Categoria, Long>{
+public interface CategoriaRepository extends JpaRepository<Categoria, Integer>{
 
 }

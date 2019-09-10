@@ -24,7 +24,7 @@ public class ClienteService {
     @Autowired
     private ClienteRepository repository;
 
-    public Cliente buscar(Long id) throws ObjectNotFoundException {
+    public Cliente buscar(Integer id) throws ObjectNotFoundException {
         Optional<Cliente> objeto = repository.findById(id);
         return objeto.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName()));
     }
@@ -46,7 +46,7 @@ public class ClienteService {
         return objeto =  repository.save(objeto);
     }
 
-    public void delete(Long id) {
+    public void delete(Integer id) {
         repository.deleteById(id);
     }
 
