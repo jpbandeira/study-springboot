@@ -71,4 +71,3 @@ insert into item_pedido values(0.40, 400, 5, 2, 2);
 
 --insert into  estado values(1, 'CE');
 --insert into  cidade values(1, 'Fortaleza', 1);
-

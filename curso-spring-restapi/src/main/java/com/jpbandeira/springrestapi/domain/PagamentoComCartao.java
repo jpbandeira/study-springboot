@@ -1,5 +1,6 @@
 package com.jpbandeira.springrestapi.domain;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.jpbandeira.springrestapi.enums.EstadoPagamento;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -7,8 +8,8 @@ import lombok.EqualsAndHashCode;
 import javax.persistence.Entity;
 
 @Entity
-@Data
-@EqualsAndHashCode
+@Data @EqualsAndHashCode
+@JsonTypeName("pagamentoComCartao")
 public class PagamentoComCartao extends Pagamento {
     private Integer numeroDeParcelas;
 

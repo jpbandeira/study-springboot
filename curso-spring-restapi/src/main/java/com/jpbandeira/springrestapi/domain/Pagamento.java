@@ -2,6 +2,7 @@ package com.jpbandeira.springrestapi.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.jpbandeira.springrestapi.enums.EstadoPagamento;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -12,7 +13,9 @@ import java.io.Serializable;
 @Entity
 @Data @EqualsAndHashCode
 @Inheritance(strategy = InheritanceType.JOINED)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type")
 public class Pagamento  implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

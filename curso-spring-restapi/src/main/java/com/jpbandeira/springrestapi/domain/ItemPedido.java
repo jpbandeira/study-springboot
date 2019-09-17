@@ -7,6 +7,7 @@ import lombok.EqualsAndHashCode;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import java.util.Objects;
+import java.util.Optional;
 
 @Entity
 public class ItemPedido {
@@ -16,14 +17,14 @@ public class ItemPedido {
     @JsonIgnore
     private ItemPedidoPK id = new ItemPedidoPK();
 
-    private Double desconto;
+    private double desconto;
     private Integer quantidade;
-    private Double preco;
+    private double preco;
 
     public ItemPedido(){
     }
 
-    public ItemPedido(Produto produto, Pedido pedido, Double desconto, Integer quantidade, Double preco) {
+    public ItemPedido(Produto produto, Pedido pedido, double desconto, Integer quantidade, double preco) {
         this.id.setPedido(pedido);
         this.id.setProduto(produto);
         this.desconto = desconto;
@@ -40,8 +41,16 @@ public class ItemPedido {
         return id.getPedido();
     }
 
+    public void setPedido(Pedido pedido){
+        id.setPedido(pedido);
+    }
+
     public Produto getProduto(){
         return id.getProduto();
+    }
+
+    public void setProduto(Produto produto){
+        id.setProduto(produto);
     }
 
     public ItemPedidoPK getId() {
@@ -52,11 +61,11 @@ public class ItemPedido {
         this.id = id;
     }
 
-    public Double getDesconto() {
+    public double getDesconto() {
         return desconto;
     }
 
-    public void setDesconto(Double desconto) {
+    public void setDesconto(double desconto) {
         this.desconto = desconto;
     }
 
@@ -68,11 +77,11 @@ public class ItemPedido {
         this.quantidade = quantidade;
     }
 
-    public Double getPreco() {
+    public double getPreco() {
         return preco;
     }
 
-    public void setPreco(Double preco) {
+    public void setPreco(double preco) {
         this.preco = preco;
     }
 
