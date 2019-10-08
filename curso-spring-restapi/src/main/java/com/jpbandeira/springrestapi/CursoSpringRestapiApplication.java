@@ -1,6 +1,7 @@
 package com.jpbandeira.springrestapi;
 
 import com.jpbandeira.springrestapi.domain.*;
+import com.jpbandeira.springrestapi.enums.TipoCliente;
 import com.jpbandeira.springrestapi.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -13,6 +14,7 @@ import java.util.Arrays;
 public class CursoSpringRestapiApplication implements CommandLineRunner {
 
 	private CidadeRepository cidadeRepository;
+	private ClienteRepository clienteRepository;
 	private CategoriaRepository categoriaRepository;
 	private ProdutoRepository produtoRepository;
 	private PedidoRepository pedidoRepository;
@@ -23,13 +25,15 @@ public class CursoSpringRestapiApplication implements CommandLineRunner {
 										 CategoriaRepository categoriaRepository,
 										 ProdutoRepository produtoRepository,
 										 PedidoRepository pedidoRepository,
-										 PagamentoRepository pagamentoRepository){
+										 PagamentoRepository pagamentoRepository,
+										 ClienteRepository clienteRepository){
 
 		this.cidadeRepository = cidadeRepository;
 		this.categoriaRepository = categoriaRepository;
 		this.produtoRepository = produtoRepository;
 		this.pedidoRepository = pedidoRepository;
 		this.pagamentoRepository = pagamentoRepository;
+		this.clienteRepository = clienteRepository;
 	}
 
 	public static void main(String[] args) {

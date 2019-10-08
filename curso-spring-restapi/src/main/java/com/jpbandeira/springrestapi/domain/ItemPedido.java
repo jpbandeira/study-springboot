@@ -16,7 +16,6 @@ public class ItemPedido {
     @EmbeddedId
     @JsonIgnore
     private ItemPedidoPK id = new ItemPedidoPK();
-
     private double desconto;
     private Integer quantidade;
     private double preco;

@@ -1,11 +1,8 @@
 package com.jpbandeira.springrestapi.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -23,15 +20,13 @@ public class Pedido  implements Serializable {
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private Date instantePedido;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
-    @JsonManagedReference
     private Pagamento pagamento;
-    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
     @ManyToOne
     @JoinColumn(name = "endereco_entrega_id")
-    private Endereco enderecoEntrega;
+    private Endereco enderecoDeEntrega;
 
 
     @OneToMany(mappedBy = "id.pedido")
@@ -39,10 +34,10 @@ public class Pedido  implements Serializable {
 
     public Pedido(){}
 
-    public Pedido(Date instantePedido, Cliente cliente, Endereco enderecoEntrega) {
+    public Pedido(Date instantePedido, Cliente cliente, Endereco enderecoDeEntrega) {
         this.instantePedido = instantePedido;
         this.cliente = cliente;
-        this.enderecoEntrega = enderecoEntrega;
+        this.enderecoDeEntrega = enderecoDeEntrega;
     }
 
     public double getValorTotal(){
@@ -69,6 +64,7 @@ public class Pedido  implements Serializable {
         this.instantePedido = instantePedido;
     }
 
+    @JsonIgnore
     public Pagamento getPagamento() {
         return pagamento;
     }
@@ -77,6 +73,7 @@ public class Pedido  implements Serializable {
         this.pagamento = pagamento;
     }
 
+    @JsonIgnore
     public Cliente getCliente() {
         return cliente;
     }
@@ -86,11 +83,11 @@ public class Pedido  implements Serializable {
     }
 
     public Endereco getEnderecoEntrega() {
-        return enderecoEntrega;
+        return enderecoDeEntrega;
     }
 
-    public void setEnderecoEntrega(Endereco enderecoEntrega) {
-        this.enderecoEntrega = enderecoEntrega;
+    public void setEnderecoEntrega(Endereco enderecoDeEntrega) {
+        this.enderecoDeEntrega = enderecoDeEntrega;
     }
 
     public Set<ItemPedido> getItens() {
